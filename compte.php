@@ -9,6 +9,9 @@ if(isset($_GET['login'])){
     $query=mysqli_query($con,"SELECT * FROM `user` WHERE username='".$username."' AND password='".$pass."'");
     if(mysqli_num_rows($query) > 0)
     {
+        $ligne = mysqli_fetch_array($query);
+        $_SESSION['id_user']=$ligne['id_user'];
+        $session_id=$_SESSION['id_user'];
         header("LOCATION:profile.html");
     }
     else

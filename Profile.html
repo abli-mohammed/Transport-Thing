@@ -12,6 +12,7 @@
     <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <script>
         function add_request() {
             var xhttp;
@@ -24,10 +25,37 @@
                 }
             };
         }
+
+        function info_user() {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "info_users.php", true);
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("pp").innerHTML = xhttp.responseText;
+                }
+            };
+        }
     </script>
 </head>
 
-<body>
+<body onload="add_request()">
+    <script>
+        function showpass() {
+            var pass = document.getElementById("password");
+            var eye = document.getElementById("eye");
+            if (pass.type === "password") {
+                pass.type = "text";
+                eye.classList.remove("glyphicon-eye-open");
+                eye.classList.add("glyphicon-eye-close");
+            } else {
+                pass.type = "password";
+                eye.classList.add("glyphicon-eye-open");
+                eye.classList.remove("glyphicon-eye-close");
+            }
+        }
+    </script>
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
@@ -44,7 +72,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="color_black"> My profile</span></a></li>
                     <li><a href="#"><span class="color_black"> Homepage</span></a></li>
-                    <li><a href="#"><span class="color_black"> Logout</span></a></li>
+                    <li><a href="login.html"><span class="color_black"> Logout</span></a></li>
                 </ul>
             </div>
         </div>
@@ -52,9 +80,7 @@
     <div class="container emp-profile">
         <div class="row">
             <div class="col-lg-4 col-md-12 nav_rigth">
-                <div><img class="img_user" src="images/user.png">
-                    <div class="img_sittings">Change photo</div>
-                </div>
+                <div><img class="img_user" src="images/user.png"></div>
                 <ul class="nav nav-pills nav-stacked" style="margin-top:10px;">
                     <li class="active" onclick="hideMain()"><a class="btn_right_1"><span class="glyphicon glyphicon-menu-hamburger">
                     </span> Main</a></li>
@@ -64,7 +90,7 @@
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a class="btn_right_1" href="#"><span class="glyphicon glyphicon-cog"></span> Sittings</a></li>
-                    <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-user"></span> Personal information</a></li>
+                    <li><a class="btn_right" href="#" onclick="info_user()"><span class="glyphicon glyphicon-user"></span> Personal information</a></li>
                     <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-map-marker"></span> Change region </a></li>
                     <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-globe"></span> language</a></li>
                 </ul>
