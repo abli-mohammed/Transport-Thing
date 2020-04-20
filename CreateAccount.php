@@ -29,39 +29,47 @@
             </div>
         </nav>
     </div>
-    <div class="container">               
+    <div class="container emp-profile">
+      <div class="raw">
+        <div class="col-lg-6">
+        <h2>Create a New Account</h2>       
                             <div class="wrapper row3">
-  <main class="hoc container1 clear"><form action="compte.php?CreateAccount" method="post">
+  <main class="hoc container1 clear" style="margin-left: 0px;padding-top:10px;"><form action="compte.php?CreateAccount" method="post">
    <div class="log1">
- E-mail
-      <div class="form-group has-feedback">
+     Your name
+      <div class="form-group has-feedback">		
+                <input  type="text" title="First name" name="firstN" placeholder="First name" style="width:43%">
+                <input  type="text" title="Last name" name="lastN" placeholder="Last name" style="width:55%">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+			
+      </div>
+      E-mail
+     <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                <input  type="text" name="email" placeholder="E-mail">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                <input  type="text" name="email" placeholder="E-mail">
+                <input  type="text" name="email" title="E-mail" placeholder="E-mail">
 			</div>
-    Téléphon
+     Mobile number
      <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-earphone form-control-feedback"></span>
-                <input  type="text" name="telephon" placeholder="Téléphon">
+                <input  type="text" name="phone" title="Mobile number" placeholder="Mobile number">
 			</div>
-      <span>Date de naissance</span>
+      <span>Birthday</span>
       <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-              <input  type="date" name="date" placeholder="Date de naissance">
+              <input  type="date" name="dateB" title="Date of birthday">
 			</div>
-      <span>Adresse de la résidence</span>
+      <span>Adress</span>
       <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
-                <input  type="text" name="adrass" placeholder="Adresse">
+                <input  type="text" name="adrass" placeholder="Adress">
 			</div>
-			<span>Mot de passe</span>
-      <div class="form-group has-feedback">
-			<span id="eye" class="form-control-feedback show-pass-btn glyphicon glyphicon-eye-open" onclick="showpass()"></span>
-                <input  type="password" id="password" name="password" placeholder="Mot de passe">
-            </div>
-      </div><div style="width: 120px;"><input class="btn" type="submit" name="add" value="Add" ></div></form></main></div>
+      </div>
+      <div><input class="btn" type="submit" name="add" value="Create account" ></div>
+    </form></main></div>
+      </div>
+      <div align="center" class="col-lg-6"><img class="img_logo" src="images/logo2.png" width="160px" height="50px"></div>
     </div>
+</div>
     <div class="section_2" align="center">
         <p>
             © Copyright 2020 AML – Abli-Brahimi

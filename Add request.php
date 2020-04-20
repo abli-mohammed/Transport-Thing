@@ -64,7 +64,7 @@ header("LOCATION:profile.html");
   <span><input type="checkbox" name="is_eme" value="1"> Is emergency</span>
 <br>
  <div align="right">
- <input class="button_choix btn" style="width: 100px;margin: 10px" type="submit" id="add" name="add" value="Add" >
+ <input class="button_choix btn" style="width: 100px;margin: 10px;background-color: #2980b9;color: #fff;" type="submit" id="add" name="add" value="Add request" >
 </div></form>
   </div>
  </div>
