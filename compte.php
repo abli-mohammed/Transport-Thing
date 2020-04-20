@@ -12,7 +12,7 @@ if(isset($_GET['login'])){
         $ligne = mysqli_fetch_array($query);
         $_SESSION['id_user']=$ligne['id_user'];
         $session_id=$_SESSION['id_user'];
-        header("LOCATION:profile.html");
+        header("LOCATION:profile.php");
     }
     else
     header("LOCATION:login.html");
@@ -21,6 +21,14 @@ if(isset($_GET['singup'])){
     $email=$_POST['email'];
     $pass=$_POST['password'];
     mysqli_query($con,"INSERT INTO `user`(`password`, `status`, `email`, `type`) VALUES ('$pass', '2', '$email', '2')");
+    header("LOCATION:CreateAccount.php");
+
+}
+if(isset($_GET['CreateAccount'])){
+    $email=$_POST['email'];
+    $pass=$_POST['password'];
+    mysqli_query($con,"INSERT INTO `user`(`password`, `status`, `email`, `type`) VALUES ('$pass', '2', '$email', '2')");
+    header("LOCATION:profile.php");
 
 }
 ?>

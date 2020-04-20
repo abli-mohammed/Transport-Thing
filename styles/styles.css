@@ -112,7 +112,7 @@ section,
 }
 
 .section_2 {
-    background-color: #00414e;
+    background-color: #222;
     height: 65px;
     padding: 20px;
 }
@@ -362,6 +362,7 @@ section,
     font-family: BarlowMedium;
     font-weight: bold;
     color: #2980B9;
+    text-transform: uppercase;
 }
 
 .glyp_profile {
