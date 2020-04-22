@@ -18,12 +18,12 @@ if(isset($_GET['login'])){
     header("LOCATION:login.html");
 }
 if(isset($_GET['singup'])){
-    $username_1=$_POST['username'];
+    $email_1=$_POST['email'];
     $pass_1=$_POST['password'];
-    $username=mysqli_real_escape_string($con,$username_1);
+    $email=mysqli_real_escape_string($con,$email_1);
     $pass=mysqli_real_escape_string($con,$pass_1);
-    mysqli_query($con,"INSERT INTO `user`(`username`, `password`, `status`, `type`) VALUES ('$username', '$pass', '2', '2')");
-    $query=mysqli_query($con,"SELECT `id_user` FROM `user` WHERE username='".$username."'");
+    mysqli_query($con,"INSERT INTO `user`(`password`, `status`,`email`, `type`) VALUES ('$pass', '2','$email', '2')");
+    $query=mysqli_query($con,"SELECT `id_user` FROM `user` WHERE email='".$email."'");
     $ligne = mysqli_fetch_array($query);
         $_SESSION['id_user']=$ligne['id_user'];
         $session_id=$_SESSION['id_user'];
@@ -32,14 +32,22 @@ if(isset($_GET['singup'])){
 }
 if(isset($_GET['CreateAccount'])){
     $session_id=$_SESSION['id_user'];
+    $code=$_POST['code'];
     $firstN=$_POST['firstN'];
     $lastN=$_POST['lastN'];
-    $email=$_POST['email'];
+    $username=$_POST['username'];
     $dateB=$_POST['dateB'];
     $phone=$_POST['phone'];
     $adrass=$_POST['adrass'];
-    mysqli_query($con,"UPDATE `user` SET `firstname`='$firstN',`lastname`='$lastN',`birthdate`='$dateB',`adress`='$adrass',`phone`='$phone',`email`='$email' WHERE id_user='$session_id'");
+    mysqli_query($con,"UPDATE `user` SET `username`='$username',`firstname`='$firstN',`lastname`='$lastN',`birthdate`='$dateB',`adress`='$adrass',`phone`='$phone' WHERE id_user='$session_id'");
+    if($code==55555)
+    {
     header("LOCATION:profile.php");
+    }
+    else
+    {
+    header("LOCATION:ConfirmAccount.php");
+    }
 
 }
 ?>

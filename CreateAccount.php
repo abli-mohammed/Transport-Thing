@@ -29,6 +29,7 @@
             </div>
         </nav>
     </div>
+
     <div class="container emp-profile">
       <div class="raw">
         <div class="col-lg-6">
@@ -43,10 +44,10 @@
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 			
       </div>
-      E-mail
+      Username
      <div class="form-group has-feedback">
-			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                <input  type="text" name="email" title="E-mail" placeholder="E-mail">
+			<span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <input  type="text" name="username" title="Username" placeholder="Username">
 			</div>
      Mobile number
      <div class="form-group has-feedback">
@@ -64,7 +65,27 @@
                 <input  type="text" name="adrass" placeholder="Adress">
 			</div>
       </div>
-      <div><input class="btn" type="submit" name="add" value="Create account" ></div>
+      <div id="Confirm_mail" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+           <div class="modal-header"> 
+           <img class="img_logo" src="images/logo2.png" width="160px" height="50px">
+            <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;font-size:28px">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p> Enter the code from the email</p>
+              <div class="input-group">
+              <span class="input-group-addon"><a href=""> Send Code Again </a></span>
+              <input  type="text" class="form-control" name="code" placeholder="XXXXX">
+              </div>
+            </div>
+            <div class="modal-footer" style="border-top:none">
+              <input class="btn" type="submit" name="add" value="Confirm account">
+			     </div>
+        </div>
+    </div>
+</div>
+<a class="btn" data-toggle="modal" data-target="#Confirm_mail" style="color: #111;width: 100px;background-color: #e0e0e0;">Next</a>   
     </form></main></div>
       </div>
       <div align="center" class="col-lg-6"><img class="img_logo" src="images/logo2.png" width="160px" height="50px"></div>
