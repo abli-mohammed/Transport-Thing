@@ -2,6 +2,11 @@
 session_start();
 $con=mysqli_connect("localhost","root","","transport_thing");
 $session_id=$_SESSION['id_user'];
+if($session_id==null)
+{
+    header("LOCATION:login.html");
+}
+else{
 $query=mysqli_query($con,"SELECT * FROM `user` WHERE id_user='".$session_id."'");
 $ligne = mysqli_fetch_array($query);
 ?>
@@ -79,7 +84,7 @@ $ligne = mysqli_fetch_array($query);
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="color_black"> My profile</span></a></li>
                     <li><a href="#"><span class="color_black"> Homepage</span></a></li>
-                    <li><a href="login.html"><span class="color_black"> Logout</span></a></li>
+                    <li><a href="compte.php?logout"><span class="color_black"> Logout</span></a></li>
                 </ul>
             </div>
         </div>
@@ -134,3 +139,4 @@ $ligne = mysqli_fetch_array($query);
 </body>
 
 </html>
+    <?php } ?>

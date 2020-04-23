@@ -54,23 +54,21 @@
 						Sing Up
 					</span>
 
-                                <div class="wrap-input100 validate-input" data-validate="Enter E-mail">
-                                    <input class="input100" type="text" name="email" placeholder="Email">
+                                <div class="wrap-input100 validate-input" data-validate="Enter Username">
+                                    <input class="input100" type="text" name="username" placeholder="Username">
                                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                                 </div>
-
+                                <div class="wrap-input100 validate-input" data-validate="Enter E-mail">
+                                    <input class="input100" type="text" name="email" placeholder="Email">
+                                    <span class="focus-input100" data-placeholder="&#xf200;"></span>
+                                </div>
                                 <div class="wrap-input100 validate-input" data-validate="Enter password">
                                     <span id="eye" class="focus-input100 glyphicon glyphicon-eye-open showpass" onclick="showpass()"></span>
-                                    <input class="input100" type="password" id="password" name="password" placeholder="Password" onkeyup="textpass()">
+                                    <input class="input100" type="password" id="password" name="password" placeholder="Password">
                                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                                 </div>
-                                <div class="wrap-input100 validate-input" data-validate="Confirm password">
-                                    <input class="input100" type="password" id="confirm" placeholder="Confirm password" onkeyup="textpass()">
-                                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
-                                </div>
-                                <p id="showTest"></p>
                                 <div class="container-login100-form-btn">
-                                    <button class="login100-form-btn" onclick="testpass()">
+                                    <button class="login100-form-btn">
 							Sing Up
 						</button>
                                 </div>
@@ -83,39 +81,15 @@
                                 <script>
                                     function showpass() {
                                         var pass = document.getElementById("password");
-                                        var conf = document.getElementById("confirm");
                                         var eye = document.getElementById("eye");
-                                        if (pass.type === "password" && conf.type === "password") {
+                                        if (pass.type === "password") {
                                             pass.type = "text";
-                                            conf.type = "text";
                                             eye.classList.remove("glyphicon-eye-open");
                                             eye.classList.add("glyphicon-eye-close");
                                         } else {
                                             pass.type = "password";
-                                            conf.type = "password";
                                             eye.classList.add("glyphicon-eye-open");
                                             eye.classList.remove("glyphicon-eye-close");
-                                        }
-                                    }
-
-                                    function testpass() {
-                                        var pass = document.getElementById("password").value;
-                                        var conf = document.getElementById("confirm").value;
-                                        var text = document.getElementById("showTest");
-                                        if (pass != conf) {
-                                            text.innerHTML = "Password no confirm";
-                                            text.style.color = "red";
-                                        }
-                                    }
-
-                                    function textpass() {
-                                        var pass = document.getElementById("password").value;
-                                        var conf = document.getElementById("confirm").value;
-                                        var text = document.getElementById("showTest");
-                                        if (pass == conf) {
-                                            text.innerHTML = "Password confirm";
-                                        } else {
-                                            text.innerHTML = "";
                                         }
                                     }
                                 </script>

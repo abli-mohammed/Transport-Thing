@@ -1,3 +1,12 @@
+<?php
+session_start();
+$session_id=$_SESSION['id_user'];
+if($session_id==NULL)
+{
+  header("LOCATION:login.html");
+}
+else{
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,11 +53,6 @@
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 			
       </div>
-      Username
-     <div class="form-group has-feedback">
-			<span class="glyphicon glyphicon-user form-control-feedback"></span>
-                <input  type="text" name="username" title="Username" placeholder="Username">
-			</div>
      Mobile number
      <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-earphone form-control-feedback"></span>
@@ -75,7 +79,7 @@
             <div class="modal-body">
               <p> Enter the code from the email</p>
               <div class="input-group">
-              <span class="input-group-addon"><a href=""> Send Code Again </a></span>
+              <span class="input-group-addon"><a> Send Code Again </a></span>
               <input  type="text" class="form-control" name="code" placeholder="XXXXX">
               </div>
             </div>
@@ -85,7 +89,7 @@
         </div>
     </div>
 </div>
-<a class="btn" data-toggle="modal" data-target="#Confirm_mail" style="color: #111;width: 100px;background-color: #e0e0e0;">Next</a>   
+<a disabled class="btn" data-toggle="modal" data-target="#Confirm_mail" style="color: #111;width: 100px;background-color: #e0e0e0;">Next</a>   
     </form></main></div>
       </div>
       <div align="center" class="col-lg-6"><img class="img_logo" src="images/logo2.png" width="160px" height="50px"></div>
@@ -100,3 +104,4 @@
 </body>
 
 </html>
+<?php } ?>
