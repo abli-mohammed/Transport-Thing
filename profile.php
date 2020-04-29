@@ -77,7 +77,7 @@ $ligne = mysqli_fetch_array($query);
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand">
                     <img class="img_logo" src="images/logo2.png" width="160px" height="50px"></a>
             </div>
             <div class="collapse navbar-collapse color_black" id="myNavbar">

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$email=$_SESSION['email'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +20,25 @@
     <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script>
+        function change_email() {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "change_mail.php", true);
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("new_email").innerHTML = xhttp.responseText;
+            };             
+                }
+        }
+        function mt()
+        {
+            var bt=document.getElementById("bt");
+            bt.classList.remove("section_2 m-t-149");
+            bt.classList.add("section_2 m-t-71");  
+        }
+</script>
 </head>
 
 <body>
@@ -29,16 +52,28 @@
             </div>
         </nav>
     </div>
-
-    <div class="container emp-profile">
-    <p> Enter the code from the email</p>
+    
+    <div class="container emp-profile m-t-40">
+    <div class="col-lg-6">
+        <h1>Transport Thing</h1>
+    <p> Enter the code from the email <b> ' <?php echo $email;?> '</b></p>
+    <form action="" method="POST">
               <div class="input-group">
-              <span class="input-group-addon"><a href=""> Send Code Again </a></span>
+              <span class="input-group-addon"><a href="mail.php"> Send Code Again </a></span>
               <input  type="text" class="form-control" name="code" placeholder="XXXXX">
               </div>
-              <input class="btn" type="submit" name="add" value="Confirm account">
-   </div>
-    
+              <input class="btn bt m-t-10" type="submit" name="add" value="Confirm account">
+    </form>
+        <p class="m-t-15" style="font-size:14px">If the email is rong <a href="#" onclick="change_email(),mt()">Change email</a></p>
+        <div id="new_email"></div>
+              
+   </div> 
+    <div class="col-lg-6"></div></div>
+    <div id="bt" class="section_2 m-t-149" align="center">
+        <p>
+            © Copyright 2020 AML – Abli-Brahimi
+        </p>
+    </div>
     <script src="bootstrap/js/main.js"></script>
 </body>
 

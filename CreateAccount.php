@@ -1,10 +1,17 @@
 <?php
 session_start();
+$con=mysqli_connect("localhost","root","","transport_thing");
 $session_id=$_SESSION['id_user'];
 if($session_id==NULL)
 {
   header("LOCATION:login.html");
 }
+$query=mysqli_query($con,"SELECT status FROM `user` WHERE id_user='".$session_id."'");
+$ligne = mysqli_fetch_array($query);
+    if($ligne['status']=='1')
+    {
+      header("LOCATION:profile.php");
+    }
 else{
 ?>
 <!DOCTYPE html>
@@ -32,7 +39,7 @@ else{
         <nav class="navbar">
             <div class="container-brand">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand">
                         <img class="img_logo" src="images/logo2.png" width="160px" height="50px"></a>
                 </div>
             </div>
@@ -48,25 +55,25 @@ else{
    <div class="log1">
      Your name
       <div class="form-group has-feedback">		
-                <input  type="text" title="First name" name="firstN" placeholder="First name" style="width:43%">
-                <input  type="text" title="Last name" name="lastN" placeholder="Last name" style="width:55%">
+                <input  type="text" id="fn" onkeyup="testCode()" title="First name" name="firstN" placeholder="First name" style="width:43%">
+                <input  type="text" id="ln" onkeyup="testCode()" title="Last name" name="lastN" placeholder="Last name" style="width:55%">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 			
       </div>
      Mobile number
      <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-earphone form-control-feedback"></span>
-                <input  type="text" name="phone" title="Mobile number" placeholder="Mobile number">
+                <input  type="text" id="phone" onkeyup="testCode()" name="phone" title="Mobile number" placeholder="Mobile number">
 			</div>
       <span>Birthday</span>
       <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-              <input  type="date" name="dateB" title="Date of birthday">
+              <input  type="date" id="date" onkeyup="testCode()" name="dateB" title="Date of birthday">
 			</div>
       <span>Adress</span>
       <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
-                <input  type="text" name="adrass" placeholder="Adress">
+                <input  type="text" id="address" name="adrass" title="Address" onkeyup="testCode()" placeholder="Adress">
 			</div>
       </div>
       <div id="Confirm_mail" class="modal fade" role="dialog">
@@ -79,18 +86,44 @@ else{
             <div class="modal-body">
               <p> Enter the code from the email</p>
               <div class="input-group">
-              <span class="input-group-addon"><a> Send Code Again </a></span>
-              <input  type="text" class="form-control" name="code" placeholder="XXXXX">
+              <span class="input-group-addon"><a href="ConfirmAccount.php"> Send Code Again </a></span>
+              <input  type="text" id="code" onkeyup="test()" class="form-control" name="code" placeholder="XXXXX">
               </div>
             </div>
             <div class="modal-footer" style="border-top:none">
-              <input class="btn" type="submit" name="add" value="Confirm account">
+            <script>
+            function test() {
+                var code = document.getElementById("code").value;
+                if (code.length == 5) {
+                    document.getElementById("add").disabled = false;
+                } else {
+                    document.getElementById("add").disabled = true;
+                }
+            }
+            function testCode(){
+	    	var fn=document.getElementById("fn").value;
+	    	var ln=document.getElementById("ln").value;
+	    	var phone=document.getElementById("phone").value;
+	    	var address=document.getElementById("address").value;
+        var date=document.getElementById("date").value;
+		    if(fn.length > 3 && ln.length > 3 && phone.length > 9 && address !="" && date !="")
+		    {	
+		    	document.getElementById("next").disabled =false;
+	    	}
+	    	else
+	    	{
+		    	document.getElementById("next").disabled =true;
+	    	}
+	}
+        </script>
+              <input disabled class="btn bt" id="add" type="submit" name="add" value="Confirm account">
 			     </div>
         </div>
     </div>
 </div>
-<a disabled class="btn" data-toggle="modal" data-target="#Confirm_mail" style="color: #111;width: 100px;background-color: #e0e0e0;">Next</a>   
-    </form></main></div>
+    </form>
+    <input disabled class="bt btn" id="next" data-toggle="modal" data-target="#Confirm_mail" style="width:100px" value="Next">  
+  </main></div>
       </div>
       <div align="center" class="col-lg-6"><img class="img_logo" src="images/logo2.png" width="160px" height="50px"></div>
     </div>

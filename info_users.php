@@ -39,7 +39,7 @@ $birthdate = $ligne['birthdate'];
 			<span id="eye" class="form-control-feedback show-pass-btn glyphicon glyphicon-eye-open" onclick="showpass()"></span>
                 <input  type="password" id="password" name="password" value="'.$password.'" placeholder="Mot de passe">
             </div>
-      </div><div style="width: 120px;"><input class="btn" style="background-color: #2980b9;color: #fff;" type="submit" name="add" value="Add" ></div></form></main></div>';
+      </div><div><input class="btn" style="background-color: #2980b9;color: #fff;width: 120px;" type="submit" name="add" value="Add" ></div></form></main></div>';
        if(isset($_POST['add']))
        {
          $email=$_POST['email'];

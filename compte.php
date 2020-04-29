@@ -24,26 +24,40 @@ if(isset($_GET['singup'])){
     $username=mysqli_real_escape_string($con,$username_1);
     $email=mysqli_real_escape_string($con,$email_1);
     $pass=mysqli_real_escape_string($con,$pass_1);
-    mysqli_query($con,"INSERT INTO `user`(`username`, `password`, `status`,`email`, `type`) VALUES ('$username', '$pass', '2','$email', '2')");
-    $query=mysqli_query($con,"SELECT `id_user` FROM `user` WHERE username='".$username."'");
-    $ligne = mysqli_fetch_array($query);
-        $_SESSION['id_user']=$ligne['id_user'];
+    $query=mysqli_query($con,"SELECT * FROM `user` WHERE email='".$email."'");
+    if(mysqli_num_rows($query) > 0)
+    {
+        header("LOCATION:SingUp.html");  
+    }
+    $sup="Confirm Account";
+    $txt=rand(10000,99999);
+    $_SESSION['code']=$txt;
+    $_SESSION['email']=$email;
+    $message="Your code is"+$txt;
+    $head="CC: $email";
+    if(mail($to,$sup,$message,$head))
+    {
+        mysqli_query($con,"INSERT INTO `user`(`username`, `password`, `status`,`email`, `type`) VALUES ('$username', '$pass', '2','$email', '2')");
+        $_SESSION['id_user']=mysqli_insert_id($con);
         $session_id=$_SESSION['id_user'];
-    header("LOCATION:CreateAccount.php");
-
+        header("LOCATION:CreateAccount.php");
+    }
+    else
+       header("LOCATION:SingUp.html");  
 }
 if(isset($_GET['CreateAccount'])){
     $session_id=$_SESSION['id_user'];
     $code=$_POST['code'];
     $firstN=$_POST['firstN'];
     $lastN=$_POST['lastN'];
-    $username=$_POST['username'];
     $dateB=$_POST['dateB'];
     $phone=$_POST['phone'];
     $adrass=$_POST['adrass'];
-    mysqli_query($con,"UPDATE `user` SET `username`='$username',`firstname`='$firstN',`lastname`='$lastN',`birthdate`='$dateB',`adress`='$adrass',`phone`='$phone' WHERE id_user='$session_id'");
-    if($code==55555)
+    mysqli_query($con,"UPDATE `user` SET `firstname`='$firstN',`lastname`='$lastN',`birthdate`='$dateB',`adress`='$adrass',`phone`='$phone' WHERE id_user='$session_id'");
+    $txt=$_SESSION['code'];
+    if($code==$txt)
     {
+    mysqli_query($con,"UPDATE `user` SET `status`='1' WHERE id_user='$session_id'");
     header("LOCATION:profile.php");
     }
     else

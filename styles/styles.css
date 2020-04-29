@@ -444,3 +444,16 @@ section,
     color: #fff;
     font-size: 21px;
 }
+
+.bt {
+    color: #fff;
+    background-color: #2980b9;
+}
+
+.bt:hover {
+    color: #fff;
+}
+
+.bt:focus {
+    color: #fff;
+}

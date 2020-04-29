@@ -1,22 +1,4 @@
-<!--<form method="POST" action="compte/?login">
-    <div>
-        <h2>Add Thing</h2>
-        <p>Destination</p>
-        <input type="text" name="destination">
-        <p>arrival</p>
-        <input type="text" name="arrival">
-        <p>Type of thing</p>
-        <select>
-            <option></option>
-        </select>
-        <p>Is emergency</p>
-        <input type="radio" name="is_eme">
-        <input type="radio" name="is_eme">
-        <p>Is free</p>
-        <input type="radio" name="is_free">
-        <input type="radio" name="is_free">
-    </div>
-</form>-->
+
 <?php
 $con=mysqli_connect("localhost","root","","transport_thing");
 $resulte=mysqli_query($con,"SELECT * FROM `type_thing`");
@@ -64,7 +46,7 @@ header("LOCATION:profile.html");
   <span><input type="checkbox" name="is_eme" value="1"> Is emergency</span>
 <br>
  <div align="right">
- <input class="button_choix btn" style="width: 100px;margin: 10px;background-color: #2980b9;color: #fff;" type="submit" id="add" name="add" value="Add request" >
+ <input class="button_choix btn" style="width: 100px;margin-top: 10px;background-color: #2980b9;color: #fff;" type="submit" id="add" name="add" value="Add request" >
 </div></form>
   </div>
  </div>
