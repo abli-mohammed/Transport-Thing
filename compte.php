@@ -29,6 +29,7 @@ if(isset($_GET['singup'])){
     {
         header("LOCATION:SingUp.html");  
     }
+    $to=$email;
     $sup="Confirm Account";
     $txt=rand(10000,99999);
     $_SESSION['code']=$txt;
@@ -62,7 +63,7 @@ if(isset($_GET['CreateAccount'])){
     }
     else
     {
-    header("LOCATION:ConfirmAccount.php");
+    header("LOCATION:ConfirmAccount.php?wrongCode");
     }
 
 }

@@ -457,3 +457,8 @@ section,
 .bt:focus {
     color: #fff;
 }
+
+a:focus,
+a:hover {
+    text-decoration: none;
+}

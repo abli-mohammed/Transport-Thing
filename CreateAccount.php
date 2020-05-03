@@ -6,13 +6,14 @@ if($session_id==NULL)
 {
   header("LOCATION:login.html");
 }
-$query=mysqli_query($con,"SELECT status FROM `user` WHERE id_user='".$session_id."'");
+$query=mysqli_query($con,"SELECT `status` FROM `user` WHERE id_user='".$session_id."'");
 $ligne = mysqli_fetch_array($query);
     if($ligne['status']=='1')
     {
       header("LOCATION:profile.php");
     }
 else{
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +87,7 @@ else{
             <div class="modal-body">
               <p> Enter the code from the email</p>
               <div class="input-group">
-              <span class="input-group-addon"><a href="ConfirmAccount.php"> Send Code Again </a></span>
+              <span class="input-group-addon"><a href="mail.php"> Send Code Again </a></span>
               <input  type="text" id="code" onkeyup="test()" class="form-control" name="code" placeholder="XXXXX">
               </div>
             </div>
