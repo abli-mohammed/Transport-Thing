@@ -1,8 +1,9 @@
 <?php
 session_start();
 $con=mysqli_connect("localhost","root","","transport_thing");
-@$session_id=$_SESSION['id_user'];
-
+$session_id=$_SESSION['id_user'];
+if(empty($session_id))
+header("LOCATION:login.html");
 $query=mysqli_query($con,"SELECT `status` FROM `user` WHERE id_user='".$session_id."'");
 $ligne = mysqli_fetch_array($query);
     if($ligne['status']=='1')
@@ -121,7 +122,7 @@ $ligne = mysqli_fetch_array($query);
         <div id="new_email"></div>
         <div align="right"><a href="compte.php?logout" class="fs-14">Logout</a></div>     
    </div> 
-    <div class="col-lg-6 m-t-100" align="center"><img class="img_logo" src="images/logo2.png" width="70%" height="15%"></div></div>
+   <div class="col-lg-6 m-t-100" align="center"><img class="img_logo" src="images/logo2.png" width="70%" height="15%"></div></div>
     <script src="bootstrap/js/main.js"></script>
 </body>
 
