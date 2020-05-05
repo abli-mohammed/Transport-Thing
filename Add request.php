@@ -1,7 +1,9 @@
 
 <?php
+session_start();
 $con=mysqli_connect("localhost","root","","transport_thing");
 $resulte=mysqli_query($con,"SELECT * FROM `type_thing`");
+$session_id=$_SESSION['id_user'];
 if(isset($_POST['add']))
 {
 @$Dest=$_POST['Dest'];
@@ -10,9 +12,9 @@ if(isset($_POST['add']))
 @$is_free=$_POST['is_free'];
 @$is_eme=$_POST['is_eme'];
 $date=date("Y/m/d");
-mysqli_query($con,"INSERT INTO `request`(`destination`, `arrival`, `id_type`, `date`, `status`, `is_emergency`, `is_free`) 
-VALUES ('$Dest', '$arrival', '$type', '$date', '0', '$is_eme', '$is_free')");
-header("LOCATION:profile.html");
+mysqli_query($con,"INSERT INTO `request`(`destination`, `arrival`, `id_type`, `date`, `status`, `is_emergency`, `is_free`, `id_user`) 
+VALUES ('$Dest', '$arrival', '$type', '$date', '0', '$is_eme', '$is_free', '$session_id')");
+header("LOCATION:profile.php");
 }
 ?>
 <div class="container" style="width: 100%;">

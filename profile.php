@@ -49,6 +49,17 @@ $ligne = mysqli_fetch_array($query);
                 }
             };
         }
+        function show_request() {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "show_request.php", true);
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("pp").innerHTML = xhttp.responseText;
+                }
+            };
+        }
     </script>
 </head>
 
@@ -97,7 +108,7 @@ $ligne = mysqli_fetch_array($query);
                     <li class="active"><a class="btn_right_1"><span class="glyphicon glyphicon-menu-hamburger">
                     </span> Main</a></li>
                     <li><a class="btn_right" href="#" onclick="add_request()"><span class="glyphicon glyphicon-plus"></span> Add request</a></li>
-                    <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-list"></span> Show request</a></li>
+                    <li><a class="btn_right" href="#" onclick="show_request()"><span class="glyphicon glyphicon-list"></span> Show request</a></li>
                     <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-search"></span> Search request</a></li>
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
@@ -130,7 +141,7 @@ $ligne = mysqli_fetch_array($query);
                 <hr style="border-top: 2px solid #2980B9;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p id="pp"></p>
+                        <div id="pp"></>
                     </div>
                 </div>
             </div>
