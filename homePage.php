@@ -130,7 +130,6 @@ $ligne = mysqli_fetch_array($query);
            </div>
         </div>
     </div>
-    <a  onclick="id_request('222222')">htfyjgf</a>
 </body>
 
 </html>
