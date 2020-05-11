@@ -11,10 +11,9 @@ $query=mysqli_query($con,"SELECT * FROM `user` WHERE id_user='".$session_id."'")
 $ligne = mysqli_fetch_array($query);
 ?>
 <html>
-
 <head>
     <title>
-        Profile
+        <?php echo $ligne['username']; ?>
     </title>
     <link rel="shortcut icon" href="images/logo2f_icon.ico" />
     <meta charset="UTF-8" />
@@ -60,6 +59,33 @@ $ligne = mysqli_fetch_array($query);
                 }
             };
         }
+        function testAdd(){
+	    	var de=document.getElementById("dest").value;
+	    	var arr=document.getElementById("arrival").value;
+        document.getElementById("done").disabled =false;
+		    if(de.length > 3 && arr.length > 3)
+		    {	
+		    	document.getElementById("done").disabled =false;
+	    	}
+	    	else
+	    	{
+		    	document.getElementById("done").disabled =true;
+	    	}
+	}
+    function testCode(){
+	    	var pass=document.getElementById("password").value;
+	    	var phone=document.getElementById("phone").value;
+	    	var address=document.getElementById("address").value;
+        var date=document.getElementById("date").value;
+		    if(pass.length > 7 && phone.length ==10 && address.length > 2 && date !="")
+		    {	
+		    	document.getElementById("add").disabled =false;
+	    	}
+	    	else
+	    	{
+		    	document.getElementById("add").disabled =true;
+	    	}
+	}
     </script>
 </head>
 
@@ -94,7 +120,7 @@ $ligne = mysqli_fetch_array($query);
             <div class="collapse navbar-collapse color_black" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="color_black"> My profile</span></a></li>
-                    <li><a href="#"><span class="color_black"> Homepage</span></a></li>
+                    <li><a href="homepage.php"><span class="color_black"> Homepage</span></a></li>
                     <li><a href="compte.php?logout"><span class="color_black"> Logout</span></a></li>
                 </ul>
             </div>
@@ -107,15 +133,15 @@ $ligne = mysqli_fetch_array($query);
                 <ul class="nav nav-pills nav-stacked" style="margin-top:10px;">
                     <li class="active"><a class="btn_right_1"><span class="glyphicon glyphicon-menu-hamburger">
                     </span> Main</a></li>
-                    <li><a class="btn_right" href="#" onclick="add_request()"><span class="glyphicon glyphicon-plus"></span> Add request</a></li>
-                    <li><a class="btn_right" href="#" onclick="show_request()"><span class="glyphicon glyphicon-list"></span> Show request</a></li>
-                    <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-search"></span> Search request</a></li>
+                    <li><a class="btn_right" href="#/Add request" onclick="add_request()"><span class="glyphicon glyphicon-plus"></span> Add request</a></li>
+                    <li><a class="btn_right" href="#/Show request" onclick="show_request()"><span class="glyphicon glyphicon-list"></span> Show request</a></li>
+                    <li><a class="btn_right" href="#Search request"><span class="glyphicon glyphicon-search"></span> Search request</a></li>
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a class="btn_right_1" href="#"><span class="glyphicon glyphicon-cog"></span> Sittings</a></li>
-                    <li><a class="btn_right" href="#" onclick="info_user()"><span class="glyphicon glyphicon-user"></span> Personal information</a></li>
-                    <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-map-marker"></span> Change region </a></li>
-                    <li><a class="btn_right" href="#"><span class="glyphicon glyphicon-globe"></span> language</a></li>
+                    <li><a class="btn_right" href="#/Personal information" onclick="info_user()"><span class="glyphicon glyphicon-user"></span> Personal information</a></li>
+                    <li><a class="btn_right" href="#/Change region"><span class="glyphicon glyphicon-map-marker"></span> Change region </a></li>
+                    <li><a class="btn_right" href="#/language"><span class="glyphicon glyphicon-globe"></span> language</a></li>
                 </ul>
                 <!--<div class="nav_profile_right">
                        <span class="glyphicon glyphicon-envelope">
@@ -141,7 +167,7 @@ $ligne = mysqli_fetch_array($query);
                 <hr style="border-top: 2px solid #2980B9;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div id="pp"></>
+                        <div id="pp"></div>
                     </div>
                 </div>
             </div>

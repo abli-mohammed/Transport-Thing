@@ -6,10 +6,16 @@ $query=mysqli_query($con,"SELECT * FROM `request` INNER JOIN `type_thing` ON req
 ?>
 <div class="container" style="width: 100%;">
     <?php 
+    if(mysqli_num_rows($query)<1)
+    {
+        echo "<div align='center' style='margin-top:100px'><h4>There is no order, please add an order. 
+        <a href='#/Add request' onclick='add_request()'>Add an order</a></h4></div>";
+    }
+    else
     while($ligne = mysqli_fetch_array($query))
     {
     echo
-    "<div class='col-lg-4 request'><h4 class='h4_request'><img src='images/",$ligne['type_thing'],".png' class='img_request'>
+    "<div class='col-lg-4 request' style='width: 31%'><h4 class='h4_request'><img src='images/",$ligne['type_thing'],".png' class='img_request'>
     <span>", $ligne['type_thing'], "</span></h4>
     <p><b>Destination </b>", $ligne['destination'], "</p>
     <p><b>Arrival </b>", $ligne['arrival'], "</p>";
@@ -22,5 +28,3 @@ $query=mysqli_query($con,"SELECT * FROM `request` INNER JOIN `type_thing` ON req
     }
     ?>
 </div>
-<script>
-</script>

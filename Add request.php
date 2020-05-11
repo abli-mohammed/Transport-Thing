@@ -18,18 +18,17 @@ header("LOCATION:profile.php");
 }
 ?>
 <div class="container" style="width: 100%;">
-        <div class="panel panel">
         <div class="panel-heading">
 			<h1>Add Thing</h1>
         </div>
  <form action="Add request.php" method="post">
   <div class="input-group">
     <span class="input-group-addon"><span class="glyphicon glyphicon-export"></span></span>
-    <input type="text" class="form-control" name="Dest" placeholder="Destination">
+    <input type="text" class="form-control" id="dest" name="Dest" onkeyup="testAdd()" placeholder="Destination">
   </div><br>
   <div class="input-group">
     <span class="input-group-addon"><span class="glyphicon glyphicon-import"></span></span>
-    <input  type="text" class="form-control" name="arrival" placeholder="arrival">
+    <input  type="text" class="form-control" id="arrival" onkeyup="testAdd()" name="arrival" placeholder="arrival">
   </div><br>
   <div class="input-group">
     <span class="input-group-addon"><span class="glyphicon glyphicon-th-list"></span></span>
@@ -48,7 +47,9 @@ header("LOCATION:profile.php");
   <span><input type="checkbox" name="is_eme" value="1"> Is emergency</span>
 <br>
  <div align="right">
- <input class="button_choix btn" style="width: 100px;margin-top: 10px;background-color: #2980b9;color: #fff;" type="submit" id="add" name="add" value="Add request" >
-</div></form>
+ <input class="button_choix btn" disabled style="width: 100px;margin-top: 10px;background-color: #2980b9;color: #fff;" type="submit" id="done" name="add" value="Add request" >
+</div>
+</form>
   </div>
- </div>
+
+ 

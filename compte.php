@@ -6,7 +6,7 @@ if(isset($_GET['login'])){
     $pass_1=$_POST['password'];
     $username=mysqli_real_escape_string($con,$username_1);
     $pass=mysqli_real_escape_string($con,$pass_1);
-    $query=mysqli_query($con,"SELECT * FROM `user` WHERE username='".$username."' AND password='".$pass."'");
+    $query=mysqli_query($con,"SELECT * FROM `user` WHERE username='".$username."' AND password='".$pass."' AND 	status='1'");
     if(mysqli_num_rows($query) > 0)
     {
         $ligne = mysqli_fetch_array($query);
