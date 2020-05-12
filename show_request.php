@@ -24,7 +24,7 @@ $query=mysqli_query($con,"SELECT * FROM `request` INNER JOIN `type_thing` ON req
     else echo"<span>For a fee</span>";
     if($ligne['is_emergency']==1)
     echo"<span> and is emergency</span>";
-    echo"<br><a href='#'>Edit </a> <a href='#'>  Delete</a></div>";
+    echo"<br><div align='right'><a href='#'>Edit </a> <a href='#'>  Delete</a></div></div>";
     }
     ?>
 </div>

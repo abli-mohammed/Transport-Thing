@@ -23,7 +23,7 @@
 
 body {
     background-color: #efeeee;
-    font-family: BarlowMedium;
+    font-family: roboto;
     font-size: 18px;
 }
 
@@ -366,8 +366,8 @@ section,
 }
 
 .glyp_profile {
-    font-family: BarlowMedium;
-    margin-bottom: 5px;
+    margin-bottom: -2px;
+    margin-right: 3px;
 }
 
 .img_user {
@@ -432,10 +432,12 @@ section,
 }
 
 .btn_right {
-    color: #222;
+    color: #333;
     font-size: 15px;
-    letter-spacing: -0.7px;
+    letter-spacing: -0.4px;
     cursor: pointer;
+    text-transform: capitalize;
+    font-weight: 400;
 }
 
 .nav-pills>li.active>a,
@@ -450,7 +452,7 @@ section,
 
 .bt {
     color: #fff;
-    background-color: #2980b9;
+    background-color: #007bff;
 }
 
 .bt:hover {
@@ -605,6 +607,22 @@ a:hover {
     background: #009aff85;
 }
 
+.card:nth-child(9):before {
+    background: #ff008254;
+}
+
+.card:nth-child(10):before {
+    background: #00c4ff63;
+}
+
+.card:nth-child(11):before {
+    background: #f7b6007a;
+}
+
+.card:nth-child(12):before {
+    background: #009aff85;
+}
+
 p {
     margin: 0px;
     ;
@@ -640,4 +658,14 @@ p {
 
 .btn[disabled] {
     cursor: auto;
+}
+
+.glyp_profile_right {
+    margin-bottom: -6px;
+    margin-right: 3px;
+}
+
+.btn:hover {
+    color: #3472ff;
+    text-decoration: none;
 }
