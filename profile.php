@@ -59,6 +59,17 @@ $ligne = mysqli_fetch_array($query);
                 }
             };
         }
+        function My_delivery() {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "My_delivery.php", true);
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("pp").innerHTML = xhttp.responseText;
+                }
+            };
+        }
         function testAdd(){
 	    	var de=document.getElementById("dest").value;
 	    	var arr=document.getElementById("arrival").value;
@@ -88,8 +99,10 @@ $ligne = mysqli_fetch_array($query);
 	}
     </script>
 </head>
-
-<body onload="add_request()">
+<?php if(isset($_GET['my_delivery']))
+echo"<body onload='My_delivery()'>";
+else echo"<body onload='add_request()'>";
+?>
     <script>
         function showpass() {
             var pass = document.getElementById("password");
@@ -135,7 +148,7 @@ $ligne = mysqli_fetch_array($query);
                     </span> Main</a></li>
                     <li><a class="btn_right" href="#/Add request" onclick="add_request()"><span class="glyphicon glyphicon-plus"></span> Add request</a></li>
                     <li><a class="btn_right" href="#/Show request" onclick="show_request()"><span class="glyphicon glyphicon-list"></span> Show request</a></li>
-                    <li><a class="btn_right" href="#Search request"><span class="glyphicon glyphicon-search"></span> Search request</a></li>
+                    <li><a class="btn_right" href="#Search request" onclick="My_delivery()"><span class="glyphicon glyphicon-search"></span> My delivery</a></li>
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a class="btn_right_1" href="#"><span class="glyphicon glyphicon-cog"></span> Sittings</a></li>

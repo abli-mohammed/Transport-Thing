@@ -525,10 +525,11 @@ a:hover {
 
 .card {
     position: relative;
-    width: 320px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
     overflow: hidden;
     margin: 10px;
+    font-family: roboto;
+    height: 270px;
 }
 
 .card:before {
@@ -569,7 +570,7 @@ a:hover {
 
 .card p {
     transition: 0.5s;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .card:nth-child(1):before {
@@ -588,7 +589,55 @@ a:hover {
     background: #009aff85;
 }
 
+.card:nth-child(5):before {
+    background: #ff008254;
+}
+
+.card:nth-child(6):before {
+    background: #00c4ff63;
+}
+
+.card:nth-child(7):before {
+    background: #f7b6007a;
+}
+
+.card:nth-child(8):before {
+    background: #009aff85;
+}
+
 p {
     margin: 0px;
     ;
+}
+
+@media (min-width: 1200px) {
+    .z .col-lg-4 {
+        width: 31.44444444%;
+        height: 260px;
+    }
+}
+
+@media (min-width: 992px) {
+    .z .col-md-4 {
+        width: 31.111%;
+        height: 260px;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-sm-5 {
+        width: 46.8888888%;
+        height: 260px;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-sm-5 {
+        width: 46.8888888%;
+        height: 260px;
+    }
+}
+
+.btn[disabled] {
+    cursor: auto;
 }

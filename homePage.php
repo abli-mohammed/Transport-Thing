@@ -2,6 +2,7 @@
 session_start();
 $con=mysqli_connect("localhost","root","","transport_thing");
 $session_id=$_SESSION['id_user'];
+$resulte=mysqli_query($con,"SELECT * FROM `type_thing`");
 if($session_id==null)
 {
     header("LOCATION:login.html");
@@ -9,7 +10,7 @@ if($session_id==null)
 else{
 $query=mysqli_query($con,"SELECT * FROM `user` WHERE id_user='".$session_id."'");
 $query_r=mysqli_query($con,"SELECT * FROM `request` INNER JOIN `type_thing` ON request.id_type=type_thing.id_type 
-AND id_user!='".$session_id."' ORDER BY id_request DESC LIMIT 8");
+AND id_user!='".$session_id."' ORDER BY id_request DESC LIMIT 12");
 $ligne = mysqli_fetch_array($query);
 ?>
 <html>
@@ -42,6 +43,28 @@ $ligne = mysqli_fetch_array($query);
             xhttp.send();
             location.reload();
         }
+        function search(a,b,c) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "search.php?type="+a+"&dest="+b+"&is_free="+c, true);
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("ss").innerHTML = xhttp.responseText;
+                }
+            };
+        }
+        function testsearch(){
+	    	var de=document.getElementById("dest").value;
+		    if(de.length>0)
+		    {	
+		    	document.getElementById("done_search").disabled =false;
+	    	}
+	    	else
+	    	{
+		    	document.getElementById("done_search").disabled =true;
+	    	}
+	}
         </script>
         
 </head>
@@ -92,15 +115,53 @@ $ligne = mysqli_fetch_array($query);
         </div>
     </nav>
     <div class="container emp-profile">
-    <!--<h1 class="username_profil"> <?php echo $ligne['firstname']; echo" "; echo $ligne['lastname'];?></h1>-->
-        <div class="row">
-           <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+     <!-------------------------------------------------Search------------------------------------------------------------>   
+    <div class="form-group has-feedback has-primary">
+    <label style="margin-left:15%">Enter the destination</label>
+    <div align="center">
+        <div class="form-group has-primary has-feedback" style="width:70%;">
+            <input id="dest" onkeyup="testsearch()" class="sujet1 form-control" type="text" placeholder="Destination">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        </div>
+    </div>
+</div>
+<div class="input-dom">
+    <div class="form-group has-feedback has-primary">
+        <label>Filter your search</label>
+        <div>
+            <div class="sujet1 input-group">
+            <select id="is_free" class="sujet1 form-control">
+            <option value="1">Is free</option>
+            <option value="0">For a fee</option>
+        </select>
+                <span class="span_dom input-group-addon"></span>
+                <select id="type" class="sujet1 form-control">
+                <?php
+                    while($ligne = @mysqli_fetch_array($resulte))
+	                 {
+                      $id_type = $ligne['id_type'];
+                      $type = $ligne['type_thing'];
+	            	  echo'<option value='.$id_type.'>'.$type.'</option>';	
+                     }
+                ?>
+                <option>All types</option>
+        </select>
+            </div>
+        </div>
+    </div>
+    <div align="right"><input class="btn bt" disabled
+    onclick="search(document.getElementById('type').value,document.getElementById('dest').value,document.getElementById('is_free').value)" type="submit" id="done_search" value="Search requests">
+</div></div>
+<hr>
+<!------------------------------------------------------------------------------------------------------------->
+        <div class="row" id="ss">
+           <div class="z col-lg-12">
            <?php    
              while($ligne = mysqli_fetch_array($query_r))
               {
                 $id_request=$ligne['id_request'];
                 echo
-                "<div class='col-lg-3 col-md-2 col-sm-1 col-xs-1 card'><h2>
+                "<div class='col-lg-4 col-md-4 col-sm-5  card'><h2>
                 <img src='images/",$ligne['type_thing'],".png' width='80px' height='80px'>
                 <span>", $ligne['type_thing'], "</span></h2>
                   <p>Destination ", $ligne['destination'], "</p>
@@ -110,7 +171,7 @@ $ligne = mysqli_fetch_array($query);
                     else echo"<span>For a fee</span>";
                     if($ligne['is_emergency']==1)
                      echo"<span> and is emergency</span>";
-                    $query_p=mysqli_query($con,"SELECT * FROM `proposition_users` WHERE id_user_demander='".$session_id."' AND id_request='".$id_request."'");
+                    $query_p=mysqli_query($con,"SELECT * FROM `proposition_users` WHERE id_user='".$session_id."' AND id_request='".$id_request."'");
                     if(mysqli_num_rows($query_p) > 0)
                      {
                         echo'<br><br><div align="right">
