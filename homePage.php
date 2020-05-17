@@ -8,7 +8,7 @@ if ($session_id == null) {
 } else {
     $query = mysqli_query($con, "SELECT * FROM `user` WHERE id_user='" . $session_id . "'");
     $query_r = mysqli_query($con, "SELECT * FROM `request` INNER JOIN `type_thing` ON request.id_type=type_thing.id_type 
-AND id_user!='" . $session_id . "' ORDER BY id_request DESC LIMIT 12");
+AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
     $ligne = mysqli_fetch_array($query);
 ?>
     <html>
@@ -62,6 +62,14 @@ AND id_user!='" . $session_id . "' ORDER BY id_request DESC LIMIT 12");
                     document.getElementById("done_search").disabled = true;
                 }
             }
+
+            function testAmount() {
+                var amount = document.getElementById('amount').value;
+                if (amount != "")
+                    document.getElementById('confirm_a').disabled = false;
+                else
+                    document.getElementById('confirm_a').disabled = true;
+            }
         </script>
 
     </head>
@@ -79,12 +87,12 @@ AND id_user!='" . $session_id . "' ORDER BY id_request DESC LIMIT 12");
                         <p>If you want to add the delivery value</p>
                         <div class="input-group">
                             <span class="input-group-addon"><a>The amount in DA</a></span>
-                            <input type="text" class="form-control" id="amount" placeholder="">
+                            <input type="text" class="form-control" onkeyup="testAmount()" id="amount" placeholder="">
                         </div>
                     </div>
                     <div class="modal-footer" style="border-top:none">
-                        <input class="btn bt" data-dismiss="modal" onclick="confirm_delivery(document.getElementById('amount').value)" type="submit" name="add" value="Confirm delivery">
-                        <input class="btn bt" data-dismiss="modal" onclick="confirm_delivery('0')" type="submit" value="for free">
+                        <input disabled id="confirm_a" class="btn bt" data-dismiss="modal" onclick="confirm_delivery(document.getElementById('amount').value)" type="submit" name="add" value="Confirm delivery">
+                        <input class="btn bt" data-dismiss="modal" onclick="confirm_delivery('0')" type="submit" value="For free">
                     </div>
                 </div>
             </div>
@@ -166,7 +174,9 @@ AND id_user!='" . $session_id . "' ORDER BY id_request DESC LIMIT 12");
                     while ($ligne = mysqli_fetch_array($query_r)) {
                         $id_request = $ligne['id_request'];
                         echo
-                            "<div class='col-lg-4 col-md-4 col-sm-5  card'><h2>
+                            "<div class='col-lg-4 col-md-4 col-sm-5  card'>
+                            <span style='color: #fff;' class='label label-default'>",$ligne['date'],"</span>
+                            <h2>
                 <img src='images/",
                             $ligne['type_thing'],
                             ".png' width='80px' height='80px'>
@@ -186,13 +196,13 @@ AND id_user!='" . $session_id . "' ORDER BY id_request DESC LIMIT 12");
                             echo "<span> and is emergency</span>";
                         $query_p = mysqli_query($con, "SELECT * FROM `proposition_users` WHERE id_user='" . $session_id . "' AND id_request='" . $id_request . "'");
                         if (mysqli_num_rows($query_p) > 0) {
-                            echo '<br><br><div align="right">
-                        <button disabled class="btn" style="position: relative;z-index: 1;background-color: #007bff;color: #fff;">
+                            echo '<br><div align="right">
+                        <button disabled class="btn" style="position: relative;z-index: 1;background-color: #007bff;color: #fff;margin-top: 15px;">
                         Delivery request</button>
                         </div></div>';
                         } else {
-                            echo '<br><br><div align="right">
-                       <a  class="btn" onclick="id_request(' . $id_request . ')" data-toggle="modal" data-target="#Confirm_delivery" style="position: relative;z-index: 1;background-color: #007bff;color: #fff;">
+                            echo '<br><div align="right">
+                       <a  class="btn" onclick="id_request(' . $id_request . ')" data-toggle="modal" data-target="#Confirm_delivery" style="position: relative;z-index: 1;background-color: #007bff;color: #fff;margin-top: 15px;">
                        Delivery request</a>
                        </div></div>';
                         }

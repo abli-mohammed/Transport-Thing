@@ -27,7 +27,9 @@ if(mysqli_num_rows($query) >=1)
                 $row = mysqli_fetch_array($query_t);
                 $id_request=$ligne['id_request'];
                 echo
-                "<div class='col-lg-4 col-md-4 col-sm-5  card'><h2>
+                "<div class='col-lg-4 col-md-4 col-sm-5  card'>
+                <span style='color: #fff;' class='label label-default'>",$ligne['date'],"</span>
+                <h2>
                 <img src='images/",$row['type_thing'],".png' width='80px' height='80px'>
                 <span>", $row['type_thing'], "</span></h2>
                   <p>Destination ", $ligne['destination'], "</p>
@@ -57,5 +59,5 @@ if(mysqli_num_rows($query) >=1)
           echo'</div>';
 }
 else
-echo"<div align='center' style='color:red'>This delivery does not exist</div>";
+echo"<div style='color:red'>Sorry, This delivery don't exist</div>";
 ?>
