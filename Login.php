@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Sing Up</title>
+    <title>Log In</title>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="images/logo2f_icon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse color_black" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.html"><span class="color_black"> Home</span></a></li>
-                        <li><a href="login.php"><span class="color_black"> Login</span></a></li>
+                        <li><a href="SingUp.html"><span class="color_black"> Singup</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -49,50 +49,55 @@
                 <div class="limiter">
                     <div class="container-login100">
                         <div class="wrap-login100" style="margin-bottom: 70px;">
-                            <form class="login100-form validate-form" method="POST" action="compte.php?singup">
+                            <form class="login100-form validate-form" method="POST" action="compte.php?login">
                                 <span class="login100-form-title p-b-34 p-t-27">
-						Sing Up
+						Log in
 					</span>
-                                <div class="wrap-input100 validate-input" data-validate="Enter Username">
-                                    <input class="input100" type="text" name="username" placeholder="Username">
-                                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
-                                </div>
-                                <div class="wrap-input100 validate-input" data-validate="Enter E-mail">
-                                    <input class="input100" type="text" name="email" placeholder="Email">
+
+                                <div class="wrap-input100 validate-input" data-validate="Enter username or email">
+                                    <input class="input100" type="text" name="username" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" placeholder="Username or email">
                                     <span class="focus-input100" data-placeholder="&#xf200;"></span>
                                 </div>
+
                                 <div class="wrap-input100 validate-input" data-validate="Enter password">
-                                    <span id="eye" class="focus-input100 glyphicon glyphicon-eye-open showpass" onclick="showpass()"></span>
                                     <input class="input100" type="password" id="password" name="password" placeholder="Password">
                                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                                    <span id="eye" class="focus-input100 showpass glyphicon glyphicon-eye-open" onclick="showpass()"></span>
+                                    <script>
+                                        function showpass() {
+                                            var pass = document.getElementById("password");
+                                            var eye = document.getElementById("eye");
+                                            if (pass.type === "password") {
+                                                pass.type = "text";
+                                                eye.classList.remove("glyphicon-eye-open");
+                                                eye.classList.add("glyphicon-eye-close");
+                                            } else {
+                                                pass.type = "password";
+                                                eye.classList.add("glyphicon-eye-open");
+                                                eye.classList.remove("glyphicon-eye-close");
+                                            }
+                                        }
+                                    </script>
                                 </div>
+
+                                <div class="contact100-form-checkbox">
+                                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                    <label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+                                </div>
+
                                 <div class="container-login100-form-btn">
                                     <button class="login100-form-btn">
-							Sing Up
+							Login
 						</button>
                                 </div>
 
                                 <div class="text-center p-t-90">
-                                    <a class="txt2" href="login.php">
-                                        Already have an account?
+                                    <a class="txt2" href="#">
+							Forgot Password?
 						</a>
                                 </div>
-                                <script>
-                                    function showpass() {
-                                        var pass = document.getElementById("password");
-                                        var eye = document.getElementById("eye");
-                                        if (pass.type === "password") {
-                                            pass.type = "text";
-                                            eye.classList.remove("glyphicon-eye-open");
-                                            eye.classList.add("glyphicon-eye-close");
-                                        } else {
-                                            pass.type = "password";
-                                            eye.classList.add("glyphicon-eye-open");
-                                            eye.classList.remove("glyphicon-eye-close");
-                                        }
-                                    }
-                                </script>
-
                             </form>
                         </div>
                     </div>
@@ -105,6 +110,7 @@
             © Copyright 2020 AML – Abli-Brahimi
         </p>
     </div>
+
     <script src="bootstrap/js/main.js"></script>
 </body>
 

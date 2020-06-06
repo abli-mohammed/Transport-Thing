@@ -11,12 +11,9 @@ if (isset($_GET['login'])) {
         $ligne = mysqli_fetch_array($query);
         $_SESSION['id_user'] = $ligne['id_user'];
         $session_id = $_SESSION['id_user'];
-        if ($ligne['type'] == '1')
-            header("LOCATION:admin.php");
-        else
-            header("LOCATION:profile.php");
+        header("LOCATION:profile.php");
     } else
-        header("LOCATION:login.html");
+        header("LOCATION:login.php");
 }
 if (isset($_GET['singup'])) {
     $username_1 = $_POST['username'];
@@ -77,7 +74,7 @@ if (isset($_GET['CreateAccount'])) {
 if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
-    header("LOCATION:login.html");
+    header("LOCATION:login.php");
 }
 if (isset($_GET['block'])) {
     $pass = $_POST['pass'];
@@ -91,7 +88,7 @@ if (isset($_GET['block'])) {
         mysqli_query($con, "DELETE FROM `proposition_users` WHERE id_user='" . $session_id . "'");
         session_unset();
         session_destroy();
-        header("LOCATION:login.html");
+        header("LOCATION:login.php");
     } else {
         echo $password;
     }
