@@ -8,7 +8,7 @@ $birthdate = $ligne['birthdate'];
 @$phone = $ligne['phone'];
 @$adress = $ligne['adress'];
 @$password = $ligne['password'];
-echo '<div class="wrapper row3">
+echo '<div class="wrapper row3" style="width:90%">
   <main class="hoc container1 clear"><form action="info_users.php" method="post">
    <div class="log1">
     Phone
@@ -32,8 +32,8 @@ echo '<div class="wrapper row3">
                 <input  type="password" id="password" name="password" value="' . $password . '" onkeyup="testCode()" placeholder="Mot de passe">
                <a href="#" class="txt1"> Forgot password?</a>
                 </div>
-      </div><div><span><input class="btn" id="add" disabled style="background-color: #2980b9;color: #fff;width: 120px;" type="submit" name="add" value="Add" ></span>
-      <span><a class="btn" data-toggle="modal" data-target="#Block_account" style="background-color: #FF333F;color: #fff;width: 120px;">Block Account</a></span>
+      </div><div><span><input class="btn" id="add" disabled style="background-color: #2980b9;color: #fff;" type="submit" name="add" value="Add" ></span>
+      <span><a class="btn" data-toggle="modal" data-target="#Block_account" style="background-color: #FF333F;color: #fff;">Block Account</a></span>
       </div></form>
       </main></div>';
 if (isset($_POST['add'])) {

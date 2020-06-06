@@ -91,19 +91,6 @@ if ($session_id == null) {
                 };
             }
 
-            function statistics() {
-                var xhttp;
-                xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "statistics.php", true);
-                xhttp.send();
-                xhttp.onreadystatechange = function() {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        document.getElementById("pp").innerHTML = xhttp.responseText;
-                        document.getElementById("btn_add_request").style.display = "block";
-                    }
-                };
-            }
-
             function show_request() {
                 var xhttp;
                 xhttp = new XMLHttpRequest();
@@ -223,6 +210,7 @@ if ($session_id == null) {
             <div class="collapse navbar-collapse color_black" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="color_black"> My profile</span></a></li>
+                    <li><a href="management.php"><span class="color_black"> Management</span></a></li>
                     <li><a href="homepage.php"><span class="color_black"> Homepage</span></a></li>
                     <li><a href="compte.php?logout"><span class="color_black"> Logout</span></a></li>
                 </ul>
@@ -258,39 +246,53 @@ if ($session_id == null) {
                             </svg>
                             <span>Add request</span></a></li>
                     <li><a class="btn_right" href="#home" onclick="show_request()">
-                            <svg class="glyp_profile_right bi bi-cart4" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                            <svg class="glyp_profile_right bi bi-file-earmark-plus" width="1.9em" height="1.9em" x="0px" y="0px" viewBox="0 0 204.095 204.095" style="enable-background:new 0 0 204.095 204.095;" xml:space="preserve">
+                                <path style="fill:#010002;" d="M204.095,74.995l-25.811-34.246l0.075-0.064h-0.132l-0.115-0.154l-0.197,0.154h-35.864
+			l4.806-13.385l-43.83-9.505L97.953,2.215L37.349,19.286l8.453,31.999L9.967,79.765v1.535L0,111.7l9.967-7.269v97.449h122.114
+			v-0.293l46.185-41.082v-59.459L204.095,74.995z M198.025,74.58l-40.896,41.253l-24.401-33.348l42.152-38.612L198.025,74.58z
+			 M166.538,45.276l-37.65,34.489h-0.898l12.404-34.489C140.395,45.276,166.538,45.276,166.538,45.276z M123.109,79.765H62.913
+			l22.014-61.195l55.837,12.114L123.109,79.765z M94.95,7.838l2.877,8.825L81.959,13.22l-23.9,66.445L42.953,22.486L94.95,7.838z
+			 M47.284,56.875l6.045,22.89H18.757L47.284,56.875z M127.479,197.284H14.559V84.361h112.92V197.284z M173.674,158.446
+			l-41.593,36.987V89.378l24.515,33.512l17.078-17.211C173.674,105.68,173.674,158.446,173.674,158.446z" />
                             </svg>
                             <span>Show request</span> </a></li>
                     <li><a class="btn_right" href="#home" onclick="My_delivery()">
-                            <svg class="glyp_profile_right bi bi-archive" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M2 5v7.5c0 .864.642 1.5 1.357 1.5h9.286c.715 0 1.357-.636 1.357-1.5V5h1v7.5c0 1.345-1.021 2.5-2.357 2.5H3.357C2.021 15 1 13.845 1 12.5V5h1z" />
-                                <path fill-rule="evenodd" d="M5.5 7.5A.5.5 0 0 1 6 7h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5zM15 2H1v2h14V2zM1 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1z" />
-                            </svg>
+                            <svg class="glyp_profile_right bi bi-person" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1.9em" height="1.9em" viewBox="0 0 53.846 53.846" style="enable-background:new 0 0 53.846 53.846;" xml:space="preserve">
+                                <path d="M22.667,43.26c-2.481,0-4.5,2.02-4.5,4.5c0,2.481,2.019,4.5,4.5,4.5s4.5-2.019,4.5-4.5
+			C27.167,45.279,25.148,43.26,22.667,43.26z M22.667,50.26c-1.378,0-2.5-1.121-2.5-2.5c0-1.378,1.122-2.5,2.5-2.5
+			c1.378,0,2.5,1.122,2.5,2.5C25.167,49.139,24.045,50.26,22.667,50.26z" />
+                                <path d="M42.768,43.26c-2.48,0-4.5,2.02-4.5,4.5c0,2.481,2.02,4.5,4.5,4.5c2.481,0,4.5-2.019,4.5-4.5
+			C47.268,45.279,45.249,43.26,42.768,43.26z M42.768,50.26c-1.377,0-2.5-1.121-2.5-2.5c0-1.378,1.123-2.5,2.5-2.5
+			c1.379,0,2.5,1.122,2.5,2.5C45.268,49.139,44.146,50.26,42.768,50.26z" />
+                                <path d="M48.471,15.172l-0.099-0.02l-5.464,0.032c-0.425-0.041-0.947-0.034-1.195,0l-8.078,0.04l-7.991-0.034
+			c-0.437-0.045-0.974-0.041-1.197-0.011l-5.561-0.027l-0.099,0.02c-2.046,0.405-3.688,1.714-4.595,3.428L10.307,2.114
+			c-0.105-0.453-0.508-0.528-0.974-0.528H1c-0.552,0-1,0.448-1,1c0,0.553,0.448,1,1,1h7.539L15.751,34.4
+			c0.001,0.006,0.004-0.113,0.006-0.108c0.551,2.687,2.646,4.671,5.344,5.158c0.12,0.032,0.24,0.034,0.363,0.058l0.1,0.005
+			l0.637-0.011l-0.005-1.004l0.133,0.999l11.297-0.058l11.308,0.057l0.004-1.001l0.123,1l0.638,0.004l0.101-0.021
+			c0.123-0.024,0.242-0.058,0.351-0.09c2.725-0.488,4.831-2.556,5.368-5.266l2.201-11.111
+			C54.432,19.404,52.078,15.887,48.471,15.172z M51.756,22.623l-2.203,11.111c-0.375,1.896-1.851,3.344-3.758,3.686l-0.158,0.038
+			c-0.047,0.013-0.097,0.026-0.146,0.038l-11.867-0.059l-11.857,0.059c-0.049-0.012-0.097-0.025-0.146-0.038l-0.157-0.038
+			c-1.908-0.342-3.383-1.788-3.759-3.686l-2.202-11.111c-0.494-2.494,1.107-4.927,3.58-5.469l5.451,0.021
+			c0.296-0.026,0.506-0.032,1.001,0.01l8.1,0.04l8.188-0.045c0.305-0.031,0.502-0.036,1,0l5.354-0.026
+            C50.648,17.696,52.249,20.128,51.756,22.623z" /></svg>
                             <span>My delivery </span>
                         </a></li>
                     <li><a class="btn_right" href="#home" onclick="delivery_request()">
-                            <svg class="glyp_profile_right bi bi-basket" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10.243 1.071a.5.5 0 0 1 .686.172l3 5a.5.5 0 1 1-.858.514l-3-5a.5.5 0 0 1 .172-.686zm-4.486 0a.5.5 0 0 0-.686.172l-3 5a.5.5 0 1 0 .858.514l3-5a.5.5 0 0 0-.172-.686z" />
-                                <path fill-rule="evenodd" d="M1 7v1h14V7H1zM.5 6a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5H.5z" />
-                                <path fill-rule="evenodd" d="M14 9H2v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9zM2 8a1 1 0 0 0-1 1v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9a1 1 0 0 0-1-1H2z" />
-                                <path fill-rule="evenodd" d="M4 10a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3a.5.5 0 0 1 .5-.5z" />
+                            <svg class="glyp_profile_right bi bi-file-earmark-plus" width="1.9em" height="1.9em" version="1.1" x="0px" y="0px" viewBox="0 0 319.86 319.86" xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path style="fill:#010002;" d="M283.587,73.922h-16.301V57.393c0-20.005-16.274-36.273-36.273-36.273H36.273
+			C16.268,21.12,0,37.388,0,57.393v114.193c0,20.005,16.274,36.273,36.273,36.273h16.306v16.529
+			c0,20.005,16.274,36.279,36.273,36.279h146.991l30.589,36.148c1.05,1.246,2.584,1.925,4.15,1.925c0.625,0,1.256-0.114,1.871-0.337
+			c2.143-0.789,3.568-2.828,3.568-5.102v-32.634h7.566c20.005,0,36.273-16.274,36.273-36.279V110.201
+			C319.866,90.196,303.592,73.922,283.587,73.922z M36.273,196.981c-14.006,0-25.395-11.389-25.395-25.395V57.393
+			c0-14,11.395-25.395,25.395-25.395h194.735c14.006,0,25.395,11.395,25.395,25.395v16.529H88.853
+			c-20.005,0-36.273,16.274-36.273,36.279v86.78H36.273z M308.988,224.389c0,14-11.395,25.4-25.395,25.4h-13.005
+			c-3.002,0-5.439,2.431-5.439,5.439v23.225l-22.626-26.738c-1.033-1.224-2.551-1.925-4.15-1.925H88.853
+			c-14.006,0-25.395-11.4-25.395-25.4v-16.529v-10.878v-86.78c0-14.006,11.395-25.4,25.395-25.4h167.556h10.878h16.306
+			c14.006,0,25.395,11.395,25.395,25.4V224.389z" />
                             </svg>
                             <span>Delivery request</span></a></li>
-                    <?php
-                    if ($ligne['type'] == '1') {
-                    ?>
-                        </li>
-                        <li><a class="btn_right" href="#home" onclick="statistics()">
-                                <svg class="glyp_profile_right bi bi-graph-up" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 0h1v16H0V0zm1 15h15v1H1v-1z" />
-                                    <path fill-rule="evenodd" d="M14.39 4.312L10.041 9.75 7 6.707l-3.646 3.647-.708-.708L7 5.293 9.959 8.25l3.65-4.563.781.624z" />
-                                    <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4h-3.5a.5.5 0 0 1-.5-.5z" />
-                                </svg>
-                                <span>Statistics</span></a></li>
-                    <?php
-                    }
-                    ?>
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a class="btn_right_1" href="#">
@@ -330,7 +332,8 @@ if ($session_id == null) {
                         <div>
                             <h1 class="username_profil"><?php echo $ligne['firstname'];
                                                         echo " ";
-                                                        echo $ligne['lastname']; ?></h1>
+                                                        echo $ligne['lastname']; ?>
+                                <span style="font-size: 30px" class="glyphicon glyphicon-star"></span></h1>
                             <div><svg class="glyp_profile bi bi-envelope-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                                     <path d="M.05 3.555L8 8.414l7.95-4.859A2 2 0 0014 2H2A2 2 0 00.05 3.555zM16 4.697l-5.875 3.59L16 11.743V4.697zm-.168 8.108L9.157 8.879 8 9.586l-1.157-.707-6.675 3.926A2 2 0 002 14h12a2 2 0 001.832-1.195zM0 11.743l5.875-3.456L0 4.697v7.046z" />
                                 </svg> <span>

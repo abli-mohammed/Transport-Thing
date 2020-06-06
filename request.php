@@ -47,5 +47,6 @@ if(isset($_GET['delet_request']))
 {
 $id_request=$_GET['delet_request'];
 mysqli_query($con,"DELETE FROM `request` WHERE id_request=$id_request");
+mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
 header("LOCATION:profile.php");
 }

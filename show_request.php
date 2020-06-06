@@ -4,7 +4,6 @@ $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $session_id = $_SESSION['id_user'];
 $query = mysqli_query($con, "SELECT * FROM `request` INNER JOIN `type_thing` ON request.id_type=type_thing.id_type AND id_user=$session_id ORDER BY date DESC");
 ?>
-<div class="container" style="width: 100%;">
     <?php
     if (mysqli_num_rows($query) < 1) {
         echo "<div align='center' style='margin-top:100px'><h4 class='txt1'>There is no order, please add an order. 
@@ -42,4 +41,3 @@ $query = mysqli_query($con, "SELECT * FROM `request` INNER JOIN `type_thing` ON 
     Delete</a></span></div>';
         }
     ?>
-</div>
