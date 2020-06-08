@@ -779,6 +779,7 @@
                                 height: 80px;
                                 margin: 5px;
                                 padding: 10px;
+                                cursor: pointer;
                             }
                             
                             .cardS div {
@@ -793,4 +794,13 @@
                             
                             .cardS div p {
                                 font-size: 16px;
+                            }
+                            
+                            .cardS:hover {
+                                background-color: #418ff8;
+                                color: #fff;
+                            }
+                            
+                            .cardS:hover div svg {
+                                color: #fff;
                             }
