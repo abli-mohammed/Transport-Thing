@@ -36,7 +36,7 @@ echo '<div class="wrapper row3" style="width:90%">
       </div>
       </div><div><span><input class="btn" id="add" disabled style="background-color: #2980b9;color: #fff;" type="submit" name="add" value="Update" ></span>
       <span><a class="btn" data-toggle="modal" data-target="#Block_account" style="background-color: #FF333F;color: #fff;">Block Account</a></span>
-      <span align="right" class="txt1"><a href="compte.php?changepass" style="margin-bottom:-10px;float: right;">Change Password</a></span>
+      <span align="right" class="txt1"><a href="compte.php?changepass" style="margin-top:8px;float: right;">Change Password</a></span>
       </div></form>
       </main></div>';
 if (isset($_POST['add'])) {
