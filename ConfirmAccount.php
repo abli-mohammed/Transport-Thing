@@ -74,7 +74,7 @@ $ligne = mysqli_fetch_array($query);
                if(cont==-1)
                {
                document.getElementById("tryAgain").innerHTML="Send Code Again";
-               document.getElementById("tryAgain").href="mail.php";
+               document.getElementById("tryAgain").href="mail.php?confirm";
                document.getElementById("tryAgain").style="color: #337ab7;cursor: pointer";    
                }
 }
@@ -109,10 +109,10 @@ $ligne = mysqli_fetch_array($query);
     if(!isset($_GET['wrongEmail']))
     {
     ?>
-    <p> Enter the code from the email <b> ' <?php echo $email;?> '</b></p>
+    <p style="font-size: 14px;"> Enter the code from the email <b> ' <?php echo $email;?> '</b></p>
     <form action="" method="POST">
               <div class="input-group">
-              <span class="input-group-addon"><a id="tryAgain" href="mail.php"> Send Code Again </a></span>
+              <span class="input-group-addon"><a id="tryAgain" href="mail.php?confirm"> Send Code Again </a></span>
               <input  type="text" class="form-control" name="code" placeholder="XXXXX">
               </div>
               <input class="btn bt m-t-10" type="submit" name="add" value="Confirm account">

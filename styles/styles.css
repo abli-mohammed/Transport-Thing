@@ -639,6 +639,9 @@
                                 .request.col-lg-4 {
                                     width: 31%;
                                 }
+                                .cardS {
+                                    width: 31.555555%;
+                                }
                             }
                             
                             @media (min-width: 992px) {
@@ -649,6 +652,9 @@
                                 .request.col-md-4 {
                                     width: 31%;
                                     padding-right: 1px;
+                                }
+                                .cardS {
+                                    width: 31.555555%;
                                 }
                             }
                             
@@ -782,6 +788,7 @@
                             
                             .cardS div svg {
                                 margin-top: 12px;
+                                color: #555;
                             }
                             
                             .cardS div p {

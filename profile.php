@@ -142,11 +142,12 @@ if ($session_id == null) {
             }
 
             function testCode() {
-                var pass = document.getElementById("password").value;
+                var fn = document.getElementById("fn").value;
+                var ln = document.getElementById("ln").value;
                 var phone = document.getElementById("phone").value;
                 var address = document.getElementById("address").value;
                 var date = document.getElementById("date").value;
-                if (pass.length > 7 && phone.length == 10 && address.length > 2 && date != "") {
+                if (fn.length > 2 && ln.length > 2 && phone.length == 10 && address.length > 2 && date != "") {
                     document.getElementById("add").disabled = false;
                 } else {
                     document.getElementById("add").disabled = true;
@@ -330,7 +331,10 @@ if ($session_id == null) {
                         <div>
                             <h1 class="username_profil"><?php echo $ligne['firstname'];
                                                         echo " ";
-                                                        echo $ligne['lastname']; ?></h1>
+                                                        echo $ligne['lastname'];
+                                                        if ($ligne['type'] == '1') echo ' <svg class="bi bi-star-fill" width="0.8em" height="0.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                          </svg>'; ?> </h1>
                             <div><svg class="glyp_profile bi bi-envelope-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor">
                                     <path d="M.05 3.555L8 8.414l7.95-4.859A2 2 0 0014 2H2A2 2 0 00.05 3.555zM16 4.697l-5.875 3.59L16 11.743V4.697zm-.168 8.108L9.157 8.879 8 9.586l-1.157-.707-6.675 3.926A2 2 0 002 14h12a2 2 0 001.832-1.195zM0 11.743l5.875-3.456L0 4.697v7.046z" />
                                 </svg> <span>

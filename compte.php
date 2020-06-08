@@ -1,20 +1,32 @@
 <?php
 session_start();
+//////////////////////////////////////////////////////////LOG IN///////////////////////////////////////////////////////////////////////
 $con = mysqli_connect("localhost", "root", "", "transport_thing");
 if (isset($_GET['login'])) {
     $username_1 = $_POST['username'];
     $pass_1 = $_POST['password'];
     $username = mysqli_real_escape_string($con, $username_1);
     $pass = mysqli_real_escape_string($con, $pass_1);
-    $query = mysqli_query($con, "SELECT * FROM `user` WHERE username='" . $username . "' AND password='" . $pass . "' AND 	status='1'");
+    $query = mysqli_query($con, "SELECT * FROM `user` WHERE password='" . $pass . "' AND username='" . $username . "' AND 	status='1'");
     if (mysqli_num_rows($query) > 0) {
         $ligne = mysqli_fetch_array($query);
         $_SESSION['id_user'] = $ligne['id_user'];
         $session_id = $_SESSION['id_user'];
+        if(!empty($_POST['remember_me']))
+        {
+            setcookie("username",$_POST['username'],time()+(10*365*60*60));
+            setcookie("password",$_POST['password'],time()+(10*365*60*60));
+        }
+        else
+        {
+            if (isset($_COOKIE["username"])) setcookie("username","");
+            if (isset($_COOKIE["password"])) setcookie("password","");
+        }
         header("LOCATION:profile.php");
     } else
-        header("LOCATION:login.php");
+        header("LOCATION:login.php?e");
 }
+/////////////////////////////////////////////////////////SING UP/////////////////////////////////////////////////////////////////////////
 if (isset($_GET['singup'])) {
     $username_1 = $_POST['username'];
     $email_1 = $_POST['email'];
@@ -22,9 +34,9 @@ if (isset($_GET['singup'])) {
     $email = mysqli_real_escape_string($con, $email_1);
     $username = mysqli_real_escape_string($con, $username_1);
     $pass = mysqli_real_escape_string($con, $pass_1);
-    $query = mysqli_query($con, "SELECT * FROM `user` WHERE email='" . $email . "'");
-    if (mysqli_num_rows($query) > 0) {
-        header("LOCATION:SingUp.html");
+    $query = mysqli_query($con, "SELECT * FROM `user` WHERE email='" . $email . "' OR username='" . $username . "'");
+    if (mysqli_num_rows($query) > 0 || strlen($pass) < 6) {
+        header("LOCATION:SingUp.php?e");break;
     }
     $to = $email;
     $sup = "Confirm Account";
@@ -47,12 +59,12 @@ if (isset($_GET['singup'])) {
     $head .= "MIME-Version: 1.0\r\n";
     $head .= "Content-type: text/html\r\n";
     if (mail($to, $sup, $message, $head)) {
-        mysqli_query($con, "INSERT INTO `user`(`username`, `password`, `status`,`email`, `type`) VALUES ('$username', '$pass', '2','$email', '2')");
+        mysqli_query($con, "INSERT INTO `user`(`password`, `status`,`email`, `type`, `username`) VALUES ('$pass', '2', '$email', '2', '$username')");
         $_SESSION['id_user'] = mysqli_insert_id($con);
         $session_id = $_SESSION['id_user'];
         header("LOCATION:CreateAccount.php");
     } else
-        header("LOCATION:SingUp.html");
+        header("LOCATION:SingUp.php");
 }
 if (isset($_GET['CreateAccount'])) {
     $session_id = $_SESSION['id_user'];
@@ -92,4 +104,32 @@ if (isset($_GET['block'])) {
     } else {
         echo $password;
     }
+}
+if (isset($_GET['changepass'])) {
+    $session_id = $_SESSION['id_user'];
+    $query = mysqli_query($con, "SELECT `username`,`email` FROM `user` WHERE id_user='" . $session_id . "'");
+    $row = mysqli_fetch_array($query);
+    $email = $row['email'];
+    $username = $row['username'];
+    $to = $email;
+    $sup = "Change Password";
+    $txt = rand(10000, 99999);
+    $_SESSION['code'] = $txt;
+    $message = "
+        <html>
+        <head>
+        <title>Change Password</title>
+        </head>
+        <body>
+        <h1>Hi $username</h1>
+        <p style='font-size:18px;'><b>Your code is $txt</b></p>
+        </body>
+        </html>
+        ";
+    $head = "CC: $email \r\n";
+    $head .= "MIME-Version: 1.0\r\n";
+    $head .= "Content-type: text/html\r\n";
+    mail($to, $sup, $message, $head);
+    $_SESSION['email'] = $email;
+    header("LOCATION:newpass.php");
 }
