@@ -4,7 +4,7 @@ $con=mysqli_connect("localhost","root","","transport_thing");
 $session_id=$_SESSION['id_user'];
 if($session_id==NULL)
 {
-  header("LOCATION:login.html");
+  header("LOCATION:login.php");
 }
 $query=mysqli_query($con,"SELECT `status` FROM `user` WHERE id_user='".$session_id."'");
 $ligne = mysqli_fetch_array($query);

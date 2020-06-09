@@ -3,7 +3,7 @@ session_start();
 $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $session_id = $_SESSION['id_user'];
 if ($session_id == null) {
-    header("LOCATION:login.html");
+    header("LOCATION:login.php");
 } else {
     $query = mysqli_query($con, "SELECT * FROM `user` WHERE id_user='" . $session_id . "'");
     $ligne = mysqli_fetch_array($query);

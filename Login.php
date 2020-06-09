@@ -58,10 +58,10 @@
                                     echo '<div class="alert alert-danger" style="padding: 10px;font-size:12px;" role="alert">
                                     Sorry ,This account does not exist</div><style>.p-b-34{padding:20px;}</style>';
                                 ?>
-                                <div class="wrap-input100 validate-input" data-validate="Enter username or email">
+                                <div class="wrap-input100 validate-input" data-validate="Enter Username Or E-mail">
                                     <input class="input100" type="text" name="username" value="<?php if (isset($_COOKIE["username"])) {
                                                                                                     echo $_COOKIE["username"];
-                                                                                                } ?>" placeholder="Username or email">
+                                                                                                } ?>" placeholder="Username or Email">
                                     <span class="focus-input100" data-placeholder="&#xf200;"></span>
                                 </div>
 

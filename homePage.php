@@ -4,7 +4,7 @@ $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $session_id = $_SESSION['id_user'];
 $resulte = mysqli_query($con, "SELECT * FROM `type_thing`");
 if ($session_id == null) {
-    header("LOCATION:login.html");
+    header("LOCATION:login.php");
 } else {
     $query = mysqli_query($con, "SELECT * FROM `user` WHERE id_user='" . $session_id . "'");
     $query_r = mysqli_query($con, "SELECT * FROM `request` INNER JOIN `type_thing` ON request.id_type=type_thing.id_type 
@@ -92,7 +92,7 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
                     </div>
                     <div class="modal-footer" style="border-top:none">
                         <input disabled id="confirm_a" class="btn bt" data-dismiss="modal" onclick="confirm_delivery(document.getElementById('amount').value)" type="submit" name="add" value="Confirm delivery">
-                        <input class="btn bt" data-dismiss="modal" onclick="confirm_delivery('0')" type="submit" value="For free">
+                        <input class="btn bt" data-dismiss="modal" onclick="confirm_delivery('0')" type="submit" value="Free">
                     </div>
                 </div>
             </div>
@@ -112,8 +112,8 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
                 </div>
                 <div class="collapse navbar-collapse color_black" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="profile.php"><span class="color_black"> My profile</span></a></li>
-                        <li><a href="#"><span class="color_black"> Homepage</span></a></li>
+                        <li><a href="profile.php"><span class="color_black" style="text-transform: capitalize;"> <?php echo $ligne['firstname'];echo " ";echo $ligne['lastname'];?></span></a></li>
+                        <li><a href="homepage.php"><span class="color_black"> Requests</span></a></li>
                         <li><a href="compte.php?logout"><span class="color_black"> Logout</span></a></li>
                     </ul>
                 </div>
@@ -122,10 +122,8 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
         <div class="container emp-profile">
 
             <!-------------------------------------------------Search------------------------------------------------------------>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-8">
-                <div class="form-group has-feedback has-primary">
-                    <label>Enter the destination</label>
+            <div class="col-lg-12" style="margin-left: -14;">
+                <div class="col-lg-4 form-group has-feedback has-primary">
                     <div>
                         <div class="form-group has-primary has-feedback">
                             <input id="dest" onkeyup="testsearch()" class="sujet1 form-control" type="text" placeholder="Destination">
@@ -138,32 +136,31 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
                         </div>
                     </div>
                 </div>
-                <div class="input-dom">
-                    <div class="form-group has-feedback has-primary">
-                        <label>Filter your search</label>
-                        <div>
-                            <div class="sujet1 input-group">
-                                <select id="is_free" class="sujet1 form-control">
-                                    <option value="1">Is free</option>
-                                    <option value="0">For a fee</option>
-                                </select>
-                                <span class="span_dom input-group-addon"></span>
-                                <select id="type" class="sujet1 form-control">
-                                    <?php
-                                    while ($ligne = @mysqli_fetch_array($resulte)) {
-                                        $id_type = $ligne['id_type'];
-                                        $type = $ligne['type_thing'];
-                                        echo '<option value=' . $id_type . '>' . $type . '</option>';
-                                    }
-                                    ?>
-                                    <option>All types</option>
-                                </select>
-                            </div>
+
+                <div class=" col-lg-6 form-group has-feedback has-primary">
+                    <div>
+                        <div class="sujet1 input-group">
+                            <select id="is_free" class="sujet1 form-control">
+                                <option value="1">free</option>
+                                <option value="0">for a fee</option>
+                            </select>
+                            <span class="span_dom input-group-addon"></span>
+                            <select id="type" class="sujet1 form-control">
+                                <?php
+                                while ($ligne = @mysqli_fetch_array($resulte)) {
+                                    $id_type = $ligne['id_type'];
+                                    $type = $ligne['type_thing'];
+                                    echo '<option value=' . $id_type . '>' . $type . '</option>';
+                                }
+                                ?>
+                                <option>All types</option>
+                            </select>
                         </div>
                     </div>
-                    <div align="right"><input class="btn bt" disabled onclick="search(document.getElementById('type').value,document.getElementById('dest').value,document.getElementById('is_free').value)" type="submit" id="done_search" value="Search requests">
-                    </div>
-                </div>
+                </div><br>
+                <input class="col-lg-2 btn bt" style="margin-top:-25px;height:40px" disabled onclick="search(document.getElementById('type').value,document.getElementById('dest').value,document.getElementById('is_free').value)" type="submit" id="done_search" value="Search requests">
+
+
                 <br>
             </div>
 
@@ -175,12 +172,9 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
                         $id_request = $ligne['id_request'];
                         echo
                             "<div class='col-lg-4 col-md-4 col-sm-5  card'>
-                            <span style='color: #fff;' class='label label-default'>",$ligne['date'],"</span>
-                            <h2>
-                <img src='images/",
-                            $ligne['type_thing'],
-                            ".png' width='80px' height='80px'>
-                <span>",
+                            <span style='color: #fff;float:right' class='label label-default'>", $ligne['date'],"</span>
+                            <h2><img src='images/",$ligne['type_thing'],".png' width='60px' height='60px'>
+                <span style='margin-left:-10px'>",
                             $ligne['type_thing'],
                             "</span></h2>
                   <p>Destination ",
@@ -190,18 +184,18 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
                             $ligne['arrival'],
                             "</p>";
                         if ($ligne['is_free'] == 1)
-                            echo "<span>Is free</span>";
-                        else echo "<span>For a fee</span>";
+                            echo "<span style='font-size:17px'>Is free</span>";
+                        else echo "<span style='font-size:17px'>For a fee</span>";
                         if ($ligne['is_emergency'] == 1)
-                            echo "<span> and is emergency</span>";
+                            echo "<span style='font-size:17px'> and is emergency</span>";
                         $query_p = mysqli_query($con, "SELECT * FROM `proposition_users` WHERE id_user='" . $session_id . "' AND id_request='" . $id_request . "'");
                         if (mysqli_num_rows($query_p) > 0) {
-                            echo '<br><div align="right">
-                        <button disabled class="btn" style="position: relative;z-index: 1;background-color: #007bff;color: #fff;margin-top: 15px;">
-                        Delivery request</button>
+                            echo '<br><div align="center">
+                        <a href="request.php?delet_propos_h=' . $id_request . '" class="btn" style="position: relative;z-index: 1;background-color: #a3a3a3;color: #fff;margin-top: 15px;">
+                       Cancel request</a>
                         </div></div>';
                         } else {
-                            echo '<br><div align="right">
+                            echo '<br><div align="center">
                        <a  class="btn" onclick="id_request(' . $id_request . ')" data-toggle="modal" data-target="#Confirm_delivery" style="position: relative;z-index: 1;background-color: #007bff;color: #fff;margin-top: 15px;">
                        Delivery request</a>
                        </div></div>';

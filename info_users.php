@@ -12,7 +12,7 @@ $ligne = @mysqli_fetch_array($result);
 echo '<div class="wrapper row3" style="width:90%">
   <main class="hoc container1 clear"><form action="info_users.php" method="post">
    <div class="log1">
-   Your Name
+  Full Name
       <div class="form-group has-feedback">		
                 <input  type="text" id="fn" value="' . $firstname . '" onkeyup="testCode()" title="First name" name="fn" placeholder="First name" style="width:43%">
                 <input  type="text" id="ln" value="' . $lastname . '" onkeyup="testCode()" title="Last name" name="ln" placeholder="Last name" style="width:55%">
@@ -24,12 +24,12 @@ echo '<div class="wrapper row3" style="width:90%">
 			<span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                 <input  type="text" name="phone" id="phone" value="' . $phone . '" onkeyup="testCode()" placeholder="phone">
 			</div>
-      <span>Date Of Birthdate</span>
+      <span>Birthdate</span>
       <div class="form-group has-feedback">
-			<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+			
               <input  type="date" name="birthdate" id="date" value="' . $birthdate . '" onkeyup="testCode()" placeholder="Date de naissance">
 			</div>
-      <span>Adress</span>
+      <span>Address</span>
       <div class="form-group has-feedback">
 			<span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
                 <input  type="text" name="adress" id="address" value="' . $adress . '" onkeyup="testCode()" placeholder="Adresse">

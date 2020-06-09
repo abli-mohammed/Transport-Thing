@@ -2,7 +2,6 @@
 session_start();
 $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $resulte = mysqli_query($con, "SELECT * FROM `type_thing`");
-$resulte = mysqli_query($con, "SELECT * FROM `type_thing`");
 $session_id = $_SESSION['id_user'];
 if (isset($_POST['add'])) {
   @$Dest = $_POST['Dest'];
@@ -10,7 +9,7 @@ if (isset($_POST['add'])) {
   @$type = $_POST['type'];
   @$is_free = $_POST['is_free'];
   @$is_eme = $_POST['is_eme'];
-  $date = date("Y/m/d");
+  $date = $_POST['date'];
   mysqli_query($con, "INSERT INTO `request`(`destination`, `arrival`, `id_type`, `date`, `status`, `is_emergency`, `is_free`, `id_user`) 
 VALUES ('$Dest', '$arrival', '$type', '$date', '0', '$is_eme', '$is_free', '$session_id')");
   header("LOCATION:admin.php");
@@ -21,7 +20,7 @@ if (isset($_POST['edit'])) {
   @$type = $_POST['type'];
   @$is_free = $_POST['is_free'];
   @$is_eme = $_POST['is_eme'];
-  $date = date("Y/m/d");
+  $date = $_POST['date'];
   $id_request=$_SESSION['id'];
   mysqli_query($con, "UPDATE `request` SET `destination`='$Dest',`arrival`='$arrival',`id_type`='$type',
   `date`='$date',`is_emergency`='$is_eme',`is_free`='$is_free',`status`='0' WHERE id_request=$id_request");
@@ -37,7 +36,7 @@ if(isset($_GET['id']))
 ?>
 <div class="container" style="width: 100%;">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Add Thing</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Add Request</h1>
                         </div>
   <form action="Add request_a.php" method="post">
   <div class="input-group">

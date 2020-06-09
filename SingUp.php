@@ -1,4 +1,3 @@
-
 <html>
 
 <head>
@@ -17,28 +16,23 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script>
-        function chechPass()
-        {
-            var pass=document.getElementById("password").value;
-            if(pass.length < 6)
-            {
-            document.getElementById("pass").innerHTML="Password low";
-            document.getElementById("pass").style.color="red";
+        function chechPass() {
+            var pass = document.getElementById("password").value;
+            if (pass.length < 6) {
+                document.getElementById("pass").innerHTML = "Password low";
+                document.getElementById("pass").style.color = "#EA3737";
             }
-            if(pass.length >= 6)
-            {
-            document.getElementById("pass").innerHTML="Password Medium";
-            document.getElementById("pass").style.color="yellow";
+            if (pass.length >= 6) {
+                document.getElementById("pass").innerHTML = "Password Medium";
+                document.getElementById("pass").style.color = "#FFC300";
             }
-            if(pass.length >= 8)
-            {
-            document.getElementById("pass").innerHTML="Password High";
-            document.getElementById("pass").style.color="green";
+            if (pass.length >= 8) {
+                document.getElementById("pass").innerHTML = "Password High";
+                document.getElementById("pass").style.color = "#2ECC71";
             }
-            if(pass.length <= 0)
-            {
-            document.getElementById("pass").innerHTML="The minimum of password is 6";
-            document.getElementById("pass").style.color="#888";
+            if (pass.length <= 0) {
+                document.getElementById("pass").innerHTML = "The minimum of password is 6";
+                document.getElementById("pass").style.color = "#ABB2B9";
             }
         }
     </script>
@@ -68,7 +62,7 @@
         </nav>
     </div>
     <div class="container">
-        <div class="row bck">
+        <div class="row bck" style="background-image:url('images/singup.png');">
             <div class="col-lg-6">
             </div>
             <div class="col-lg-6" style="background-color:none;">

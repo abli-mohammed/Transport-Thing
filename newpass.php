@@ -96,7 +96,7 @@ else {
             ?>
             </div>
         </div>
-        <div class="col-lg-6 m-t-100" align="center"><img class="img_logo" src="images/logo2.png" width="70%" height="15%"></div>
+        <div class="col-lg-6" align="center"><img class="img_logo" src="images/changepass2.png" width="70%" height="15%"></div>
     </div>
     <script src="bootstrap/js/main.js"></script>
     </body>

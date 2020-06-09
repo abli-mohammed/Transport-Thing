@@ -27,7 +27,7 @@ $message = "
 <body>
 <h1>Hi $username</h1>
 <p style='font-size:18px;'><b>You have new delivery please check your account</b></p>
-<a href='http://localhost/Transport Thing/login.html' style='color:blue;font-size:18px;'>Click here</a>
+<a href='http://localhost/Transport Thing/login.php' style='color:blue;font-size:18px;'>Click here</a>
 </body>
 </html>
 ";
@@ -49,4 +49,10 @@ $id_request=$_GET['delet_request'];
 mysqli_query($con,"DELETE FROM `request` WHERE id_request=$id_request");
 mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
 header("LOCATION:profile.php");
+}
+if(isset($_GET['delet_propos_h']))
+{
+$id_request=$_GET['delet_propos_h'];
+mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
+header("LOCATION:homePage.php");
 }

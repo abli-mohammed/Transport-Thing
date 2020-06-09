@@ -104,7 +104,7 @@ else {
                     <input class="btn bt m-t-10" id="btn" type="submit" name="change" disabled value="Continue">
                 </form>
             </div>
-            <div class="col-lg-6 m-t-100" align="center"><img class="img_logo" src="images/logo2.png" width="70%" height="15%"></div>
+            <div class="col-lg-6" align="center"><img class="img_logo" src="images/changepass1.png" width="70%" height="15%"></div>
         </div>
         <script src="bootstrap/js/main.js"></script>
     </body>

@@ -7,6 +7,7 @@ function add_request() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById("pp").innerHTML = xhttp.responseText;
             document.getElementById("btn_add_request").style.display = "none";
+            document.getElementById("pp").style.overflow = "hidden";
         }
     };
 }
@@ -20,6 +21,7 @@ function edit(value) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById("pp").innerHTML = xhttp.responseText;
             document.getElementById("btn_add_request").style.display = "block";
+            document.getElementById("pp").style.overflow = "hidden";
         }
     };
 }
@@ -74,6 +76,7 @@ function statistics() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById("pp").innerHTML = xhttp.responseText;
             document.getElementById("btn_add_request").style.display = "block";
+            document.getElementById("pp").style.overflow = "hidden";
         }
     };
 }

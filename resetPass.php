@@ -83,7 +83,7 @@ if (isset($_POST['check'])) {
             </form>
             <div align="right"><a href="login.php" class="fs-14">Back</a></div>
         </div>
-        <div class="col-lg-6 m-t-100" align="center"><img class="img_logo" src="images/logo2.png" width="70%" height="15%"></div>
+        <div class="col-lg-6" align="center" style="margin-top: -20px;"><img class="img_logo" src="images/resetpass.png" width="70%" height="15%"></div>
     </div>
     <script src="bootstrap/js/main.js"></script>
 </body>

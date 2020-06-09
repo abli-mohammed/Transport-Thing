@@ -229,8 +229,10 @@ iframe {
     width: 400px;
     overflow: hidden;
     padding: 30px 55px 37px 55px;
-    background-color: #222;
-    /*background: -webkit-linear-gradient(top, #013a72, #000606);*/
+    background-color: #272731;
+    border-radius: 7px;
+    position: relative;
+    box-shadow: #3f3d56 7px 9px 16px -6px;
 }
 
 

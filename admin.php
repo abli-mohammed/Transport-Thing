@@ -3,7 +3,7 @@ session_start();
 $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $session_id = $_SESSION['id_user'];
 if ($session_id == null) {
-    header("LOCATION:login.html");
+    header("LOCATION:login.php");
 } else {
     $query = mysqli_query($con, "SELECT * FROM `user` WHERE id_user='" . $session_id . "'");
     $ligne = mysqli_fetch_array($query);
@@ -378,7 +378,7 @@ if ($session_id == null) {
                         <span>Language</span></a>
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="login.html">English</a>
+                            <a class="collapse-item" href="login.php">English</a>
                             <a class="collapse-item" href="register.html">العربية</a>
                         </div>
                     </div>
@@ -510,7 +510,7 @@ if ($session_id == null) {
                                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-primary" href="login.html">Logout</a>
+                                    <a class="btn btn-primary" href="login.php">Logout</a>
                                 </div>
                             </div>
                         </div>

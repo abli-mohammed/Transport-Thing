@@ -12,15 +12,12 @@ if (isset($_GET['login'])) {
         $ligne = mysqli_fetch_array($query);
         $_SESSION['id_user'] = $ligne['id_user'];
         $session_id = $_SESSION['id_user'];
-        if(!empty($_POST['remember_me']))
-        {
-            setcookie("username",$_POST['username'],time()+(10*365*60*60));
-            setcookie("password",$_POST['password'],time()+(10*365*60*60));
-        }
-        else
-        {
-            if (isset($_COOKIE["username"])) setcookie("username","");
-            if (isset($_COOKIE["password"])) setcookie("password","");
+        if (!empty($_POST['remember_me'])) {
+            setcookie("username", $_POST['username'], time() + (10 * 365 * 60 * 60));
+            setcookie("password", $_POST['password'], time() + (10 * 365 * 60 * 60));
+        } else {
+            if (isset($_COOKIE["username"])) setcookie("username", "");
+            if (isset($_COOKIE["password"])) setcookie("password", "");
         }
         header("LOCATION:profile.php");
     } else
@@ -36,7 +33,8 @@ if (isset($_GET['singup'])) {
     $pass = mysqli_real_escape_string($con, $pass_1);
     $query = mysqli_query($con, "SELECT * FROM `user` WHERE email='" . $email . "' OR username='" . $username . "'");
     if (mysqli_num_rows($query) > 0 || strlen($pass) < 6) {
-        header("LOCATION:SingUp.php?e");break;
+        header("LOCATION:SingUp.php?e");
+        break;
     }
     $to = $email;
     $sup = "Confirm Account";
