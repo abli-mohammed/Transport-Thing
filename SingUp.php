@@ -62,7 +62,7 @@
         </nav>
     </div>
     <div class="container">
-        <div class="row bck" style="background-image:url('images/singup.png');">
+        <div class="row bck" style="background-image:url('images/login.png');">
             <div class="col-lg-6">
             </div>
             <div class="col-lg-6" style="background-color:none;">
