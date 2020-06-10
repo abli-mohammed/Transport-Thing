@@ -2,11 +2,11 @@
 session_start();
 $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $session_id = $_SESSION['id_user'];
-if (empty($session_id)) {
-    header("LOCATION:login.php");
+$query = mysqli_query($con, "SELECT * FROM `user` WHERE id_user='" . $session_id . "'");
+$ligne = mysqli_fetch_array($query);
+if (empty($session_id) || $ligne['status']=='2') {
+    header("LOCATION:compte.php?logout");
 } else {
-    $query = mysqli_query($con, "SELECT * FROM `user` WHERE id_user='" . $session_id . "'");
-    $ligne = mysqli_fetch_array($query);
 ?>
     <html>
 
@@ -132,7 +132,7 @@ if (empty($session_id)) {
                                 <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 01-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 01.872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 012.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 012.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 01.872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 01-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 01-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 100-5.86 2.929 2.929 0 000 5.858z" clip-rule="evenodd" />
                             </svg>
                             <span>Sittings</span></a></li>
-                    <li><a class="btn_right" href="#home" onclick="info_user()">
+                    <li><a class="btn_right" href="#" onclick="info_user()">
                             <svg class="glyp_profile_right bi bi-person" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM8 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd" />
                             </svg>
@@ -142,7 +142,7 @@ if (empty($session_id)) {
                     if ($ligne['type'] == '1') {
                     ?>
                         </li>
-                        <li><a class="btn_right" href="#home" onclick="statistics()">
+                        <li><a class="btn_right" href="#" onclick="statistics()">
                                 <svg class="glyp_profile_right bi bi-graph-up" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0 0h1v16H0V0zm1 15h15v1H1v-1z" />
                                     <path fill-rule="evenodd" d="M14.39 4.312L10.041 9.75 7 6.707l-3.646 3.647-.708-.708L7 5.293 9.959 8.25l3.65-4.563.781.624z" />
@@ -152,7 +152,7 @@ if (empty($session_id)) {
                     <?php
                     }
                     ?>
-                    <li><a class="btn_right" href="#home">
+                    <li><a class="btn_right" href="#">
 
                             <svg class="glyp_profile_right bi bi-type" width="1.7em" height="1.7em" viewBox="0 0 205.229 205.229" xml:space="preserve">
                                 <path style="fill:#010002;" d="M102.618,205.229c-56.585,0-102.616-46.031-102.616-102.616C0.002,46.031,46.033,0,102.618,0

@@ -131,3 +131,14 @@ if (isset($_GET['changepass'])) {
     $_SESSION['email'] = $email;
     header("LOCATION:newpass.php");
 }
+if (isset($_GET['admin_block'])) {
+    $id = $_GET['admin_block'];
+        mysqli_query($con, "UPDATE `user` SET `status`='2' WHERE id_user='" . $id . "'");
+        mysqli_query($con, "UPDATE `request` SET `status`='1' WHERE id_user='" . $id . "'");
+        mysqli_query($con, "DELETE FROM `proposition_users` WHERE id_user='" . $id . "'");
+}
+if (isset($_GET['deblocking'])) {
+    $id = $_GET['deblocking'];
+        mysqli_query($con, "UPDATE `user` SET `status`='1' WHERE id_user='" . $id . "'");
+        mysqli_query($con, "UPDATE `request` SET `status`='0' WHERE id_user='" . $id . "'");
+}

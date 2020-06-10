@@ -161,9 +161,98 @@ function show_users() {
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById("show_users").innerHTML = xhttp.responseText;
-            document.getElementById("users").style.backgroundColor = "#418ff8";
-            document.getElementById("users").style.color = "#fff";
-            document.querySelector(".bi-people-fill").style.color = "#fff";
+            document.getElementById("pp").style.height = "90%";
+            document.getElementById("users").classList.add("fucus");
+            document.getElementById("requests").classList.remove("fucus");
+            document.getElementById("deblock").classList.remove("fucus");
+            document.getElementById("delivery").classList.remove("fucus");
+        }
+    };
+}
+
+function show_requests() {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "management.php?show_requests", true);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("show_users").innerHTML = xhttp.responseText;
+            document.getElementById("pp").style.height = "90%";
+            document.getElementById("requests").classList.add("fucus");
+            document.getElementById("users").classList.remove("fucus");
+            document.getElementById("deblock").classList.remove("fucus");
+            document.getElementById("delivery").classList.remove("fucus");
+        }
+    };
+}
+
+function blocked_users() {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "management.php?blocked_users", true);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("show_users").innerHTML = xhttp.responseText;
+            document.getElementById("pp").style.height = "90%";
+            document.getElementById("deblock").classList.add("fucus");
+            document.getElementById("users").classList.remove("fucus");
+            document.getElementById("requests").classList.remove("fucus");
+            document.getElementById("delivery").classList.remove("fucus");
+        }
+    };
+}
+
+function delivery() {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "management.php?delivery", true);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("show_users").innerHTML = xhttp.responseText;
+            document.getElementById("pp").style.height = "90%";
+            document.getElementById("delivery").classList.add("fucus");
+            document.getElementById("users").classList.remove("fucus");
+            document.getElementById("requests").classList.remove("fucus");
+            document.getElementById("deblock").classList.remove("fucus");
+        }
+    };
+}
+
+function block(value) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "compte.php?admin_block=" + value, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            show_users();
+        }
+    };
+}
+
+function deblocking(value) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "compte.php?deblocking=" + value, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            blocked_users();
+        }
+    };
+}
+
+function delete_request(value) {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "request.php?delete_request=" + value, true);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            show_requests();
         }
     };
 }

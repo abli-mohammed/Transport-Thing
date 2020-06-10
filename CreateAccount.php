@@ -126,7 +126,7 @@ else{
     <input disabled class="bt btn" id="next" data-toggle="modal" data-target="#Confirm_mail" style="width:100px" value="Next">  
   </main></div>
       </div>
-      <div align="center" class="col-lg-6"><img class="img_logo" src="images/logo2.png" width="160px" height="50px"></div>
+      <div align="center" class="col-lg-6"><img class="img_logo" src="images/account.png" width="100%" height="100%"></div>
     </div>
 </div>
     <div class="section_2" align="center">

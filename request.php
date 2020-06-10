@@ -43,16 +43,16 @@ $id_request=$_GET['delet_propos'];
 mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
 header("LOCATION:profile.php?my_delivery");
 }
-if(isset($_GET['delet_request']))
-{
-$id_request=$_GET['delet_request'];
-mysqli_query($con,"DELETE FROM `request` WHERE id_request=$id_request");
-mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
-header("LOCATION:profile.php");
-}
+
 if(isset($_GET['delet_propos_h']))
 {
 $id_request=$_GET['delet_propos_h'];
 mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
 header("LOCATION:homePage.php");
+}
+if(isset($_GET['delete_request']))
+{
+$id_request=$_GET['delete_request'];
+mysqli_query($con,"DELETE FROM `request` WHERE id_request=$id_request");
+mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
 }
