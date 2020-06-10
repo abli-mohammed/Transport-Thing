@@ -152,7 +152,7 @@ if (empty($session_id) || $ligne['status']=='2') {
                     <?php
                     }
                     ?>
-                    <li><a class="btn_right" href="#">
+                    <li><a class="btn_right" href="#home">
 
                             <svg class="glyp_profile_right bi bi-type" width="1.7em" height="1.7em" viewBox="0 0 205.229 205.229" xml:space="preserve">
                                 <path style="fill:#010002;" d="M102.618,205.229c-56.585,0-102.616-46.031-102.616-102.616C0.002,46.031,46.033,0,102.618,0
