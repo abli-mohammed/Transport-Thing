@@ -95,33 +95,6 @@
             </div>
         </div>
     </section>
-    <div class="btn_up" id="btn_up" title="Back to top">
-        <img src="images/up1.png" width="30px" height="30px">
-    </div>
-    <script type="text/javascript">
-        var btnUp = document.getElementById("btn_up"),
-            s, d;
-
-        function btnHide() {
-            if (document.body.scrollTop <= 150)
-                btnUp.style.display = "none";
-            else
-                btnUp.style.display = "block";
-        }
-        window.onload = btnHide;
-        window.onscroll = btnHide;
-        btnUp.onclick = function() {
-            d = document.body.scrollTop;
-            goup();
-        }
-
-        function goup() {
-            document.body.scrollTop -= d / 50;
-            s = setTimeout(goup, 10);
-            if (document.body.scrollTop == 0)
-                clearTimeout(s);
-        }
-    </script>
     <div class="section_2" align="center">
         <div class="row">
             <div class="col-lg-4">
@@ -130,7 +103,7 @@
             </div>
             <div class="col-lg-4">
                 <p style="margin-top: 10px;">
-                    © Copyright 2020 AML – Abli-Brahimi
+                    © Copyright 2020 – Abli-Brahimi
                 </p>
             </div>
             <div class="col-lg-4">
@@ -141,6 +114,45 @@
             </div>
         </div>
     </div>
+    <div class="btn_up" id="btn_up" title="Back to top">
+        <svg class="bi bi-arrow-up-square-fill" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+          </svg>
+    </div>
+    <script>
+        var btnUp = document.getElementById("btn_up"),
+            s, d;
+
+        function btnHide() {
+            if (window.scrollY >= 300) {
+                if (!btnUp.classList.contains("btn_over")) {
+                    btnUp.style.display = "block";
+                    btnUp.classList.remove("btn_exit");
+                    btnUp.classList.add("btn_over");
+                }
+
+            } else {
+                if (!btnUp.classList.contains("btn_exit")) {
+                    btnUp.classList.remove("btn_over");
+                    btnUp.classList.add("btn_exit");
+                }
+            }
+
+        }
+        window.onload = btnHide;
+        window.onscroll = btnHide;
+        btnUp.onclick = function() {
+            d = window.scrollTo(0, 0);
+            goup();
+        }
+
+        function goup() {
+            document.body.scrollY -= d / 50;
+            s = setTimeout(goup, 10);
+            if (document.body.scrollY == 0)
+                clearTimeout(s);
+        }
+    </script>
 </body>
 
 </html>

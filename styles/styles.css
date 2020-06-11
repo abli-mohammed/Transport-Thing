@@ -194,16 +194,53 @@ section,
     margin-top: -20px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .btn_up {
     position: fixed;
     bottom: 20px;
     right: 15px;
     cursor: pointer;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 30px;
 }
 
-.btn_up:hover {
-    background-color: #efefef;
-    border-radius: 50%;
+.btn_over {
+    animation-duration: 1s;
+    animation-name: btn_over;
+    animation-fill-mode: forwards;
+}
+
+@keyframes btn_over {
+    from {
+        bottom: -30px;
+    }
+    to {
+        bottom: 20px;
+    }
+}
+
+.btn_exit {
+    animation-duration: 0.9s;
+    animation-name: btn_exit;
+    animation-fill-mode: forwards;
+}
+
+@keyframes btn_exit {
+    from {
+        bottom: 20px;
+    }
+    to {
+        bottom: -40px;
+    }
+}
+
+.btn_up:hover,
+.btn_up:focus {
+    color: #0F70F4;
 }
 
 .col-lg-3 {
