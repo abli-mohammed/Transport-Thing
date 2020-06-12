@@ -2,7 +2,8 @@
 session_start();
 $con = mysqli_connect("localhost", "root", "", "transport_thing");
 if (isset($_POST['check'])) {
-    $value = $_POST['resetpass'];
+    $value1 = $_POST['resetpass'];
+    $value = $pass = mysqli_real_escape_string($con, $value_1);
     $query = mysqli_query($con, "SELECT * FROM `user` WHERE status ='1' AND email='" . $value . "' OR username='" . $value . "'");
     $row = mysqli_fetch_array($query);
     if (mysqli_num_rows($query) > 0) {
