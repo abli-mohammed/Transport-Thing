@@ -77,8 +77,19 @@ function statistics() {
             document.getElementById("pp").innerHTML = xhttp.responseText;
             document.getElementById("btn_add_request").style.display = "block";
             document.getElementById("pp").style.overflow = "hidden";
+            var users = document.getElementById("users");
+            if (users.classList.contains("fucus"))
+                show_users();
+            var deblocke = document.getElementById("deblock");
+            if (deblocke.classList.contains("fucus"))
+                blocked_users();
+            var requeste = document.getElementById("requests");
+            if (requeste.classList.contains("fucus"))
+                show_requests();
+
         }
     };
+
 }
 
 function show_request() {
@@ -217,6 +228,7 @@ function block(value) {
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
+            statistics();
             show_users();
         }
     };
@@ -229,7 +241,9 @@ function deblocking(value) {
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
+            statistics();
             blocked_users();
+
         }
     };
 }
@@ -241,6 +255,7 @@ function delete_request(value) {
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
+            statistics();
             show_requests();
         }
     };

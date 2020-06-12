@@ -19,7 +19,7 @@ if (isset($_GET['login'])) {
             if (isset($_COOKIE["username"])) setcookie("username", "");
             if (isset($_COOKIE["password"])) setcookie("password", "");
         }
-        header("LOCATION:profile.php");
+        header("LOCATION:homePage.php");
     } else
         header("LOCATION:login.php?e");
 }

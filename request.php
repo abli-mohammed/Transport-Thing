@@ -56,3 +56,10 @@ $id_request=$_GET['delete_request'];
 mysqli_query($con,"DELETE FROM `request` WHERE id_request=$id_request");
 mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
 }
+if(isset($_GET['delete_request_u']))
+{
+$id_request=$_GET['delete_request_u'];
+mysqli_query($con,"DELETE FROM `request` WHERE id_request=$id_request");
+mysqli_query($con,"DELETE FROM `proposition_users` WHERE id_request=$id_request");
+header("LOCATION:profile.php");
+}

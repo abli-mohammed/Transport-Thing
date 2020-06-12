@@ -20,6 +20,7 @@ $query=mysqli_query($con,"SELECT * FROM `request` INNER JOIN `type_thing`
     {
     echo
     "<div class='col-lg-4 col-md-4 request'>
+    <span style='color: #fff;float:right' class='label label-default'>", $ligne['date'],"</span>
     <h4 class='h4_request'><img src='images/",$ligne['type_thing'],".png' class='img_request'>
     <span>", $ligne['type_thing'], "</span></h4>
     <p><b>Destination </b>", $ligne['destination'], "</p>

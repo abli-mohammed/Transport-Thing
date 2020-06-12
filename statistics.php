@@ -2,7 +2,7 @@
 session_start();
 $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $query1 = mysqli_query($con, "SELECT * FROM `user` WHERE status='1'");
-$query2 = mysqli_query($con, "SELECT * FROM `request`");
+$query2 = mysqli_query($con, "SELECT * FROM `request` WHERE status='0'");
 $query3 = mysqli_query($con, "SELECT * FROM `proposition_users`");
 $query4 = mysqli_query($con, "SELECT * FROM `user` WHERE status='2'");
 ?>

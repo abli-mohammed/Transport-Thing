@@ -168,8 +168,10 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
             <div class="row" id="ss">
                 <div class="z col-lg-12">
                     <?php
+                    $dateNow = date("Y-m-d");
                     while ($ligne = mysqli_fetch_array($query_r)) {
                         $id_request = $ligne['id_request'];
+                        if ($ligne['date'] >= $dateNow) {
                         echo
                             "<div class='col-lg-4 col-md-4 col-sm-5  card'>
                             <span style='color: #fff;float:right' class='label label-default'>", $ligne['date'],"</span>
@@ -200,7 +202,7 @@ AND id_user!='" . $session_id . "' ORDER BY date DESC LIMIT 12");
                        Delivery request</a>
                        </div></div>';
                         }
-                    }
+                    }}
                     ?>
                 </div>
             </div>
