@@ -123,7 +123,16 @@ if (empty($session_id) || $ligne['status'] == '2') {
         </nav>
         <div class="row">
             <div class="col-lg-4 col-md-3 col-sm-4 nav_rigth" id="nav_profile">
-                <div align="center"><img class="img_user" src="images/user.png"></div>
+                <div align="center"  class="photo"><img class="img_user" <?php if(!empty($ligne['photo']))
+                                                                   echo 'src="data:image/jpeg;base64,' . base64_encode($ligne['photo']) . '"';
+                                                                   else
+                                                                   echo 'src="images/user.png"';?> />
+                    <form id="form_photo" action="compte.php?add_photo" method="POST" enctype="multipart/form-data">
+                        <label for="file" class="change_photo">
+                            <img class="upload" src="images/upload.png" width="20px" height="17px"> Update Photo</label>
+                        <input id="file" name="image[]" class="form-control" type="file" onchange="submit_form()">
+                    </form>
+                </div>
                 <ul class="nav nav-pills nav-stacked nav_main">
                     <li class="active"><a class="btn_right_1">
                             <svg style="margin-bottom: -5px;" class="glyp_profile_right bi bi-grid-fill" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

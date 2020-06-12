@@ -260,3 +260,7 @@ function delete_request(value) {
         }
     };
 }
+
+function submit_form() {
+    document.getElementById("form_photo").submit();
+}

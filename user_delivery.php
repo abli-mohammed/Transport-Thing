@@ -10,16 +10,19 @@ $query = mysqli_query($con, "SELECT * FROM `proposition_users` INNER JOIN `user`
     <?php
         while ($ligne = mysqli_fetch_array($query)) {
             echo
-                "<div class='request' style='padding:15px'>
-                <h4 class='h4_request' style='text-transform: capitalize;'>",$ligne['firstname']," ", $ligne['lastname'],"</h4>
+                "<div class='request' style='padding:15px'><h4 class='h4_request' style='text-transform: capitalize;'>";
+                if(!empty($ligne['photo']))
+                echo"<img src='data:image/jpeg;base64," . base64_encode($ligne['photo']) . "' width='50px' height='50px' style='margin: 10px;border-radius:50%;'>";
+                else
+                echo"<img src='images/user.png' width='50px' height='50px' style='margin: 10px;border-radius:50%;'>";
+                echo"   ", $ligne['firstname']," ", $ligne['lastname'],"</h4>
                 <p><b>E-mail </b>",
                 $ligne['email'],
                 "</p><p><b>Phone </b>",
                 $ligne['phone'],
                 "</p><p><b>Amount </b>",
                 $ligne['is_free'],
-                "</p>";
-                echo"</div>";
+                "</p></div>";
             }
     ?>
 </div>

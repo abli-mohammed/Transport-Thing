@@ -68,7 +68,7 @@
                                 <div class="wrap-input100 validate-input" data-validate="Enter password">
                                     <input class="input100" type="password" id="password" name="password" value="<?php if (isset($_COOKIE["password"])) {
                                                                                                     echo $_COOKIE["password"];
-                                                                                                } ?>"" placeholder="Password">
+                                                                                                } ?>" placeholder="Password">
                                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                                     <span id="eye" class="focus-input100 showpass glyphicon glyphicon-eye-open" onclick="showpass()"></span>
                                     <script>
