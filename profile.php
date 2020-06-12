@@ -4,7 +4,7 @@ $con = mysqli_connect("localhost", "root", "", "transport_thing");
 $session_id = $_SESSION['id_user'];
 $query = mysqli_query($con, "SELECT * FROM `user` WHERE id_user='" . $session_id . "'");
 $ligne = mysqli_fetch_array($query);
-if (empty($session_id) || $ligne['status']=='2') {
+if (empty($session_id) || $ligne['status'] == '2') {
     header("LOCATION:compte.php?logout");
 } else {
 ?>
@@ -29,6 +29,37 @@ if (empty($session_id) || $ligne['status']=='2') {
         echo "<body onload='My_delivery()'>";
     else echo "<body onload='show_request()'>";
     ?>
+    <script>
+        var d = "<?php echo date("Y-m-d"); ?>";
+
+        function testAdd() {
+            var de = document.getElementById("dest").value;
+            var arr = document.getElementById("arrival").value;
+            var dat = document.getElementById("dat").value;
+            if (de.length > 3 && arr.length > 3 && dat != 0 && d <= dat) {
+                document.getElementById("done").disabled = false;
+            } else {
+                document.getElementById("done").disabled = true;
+            }
+            if (dat != 0 && d >= dat) {
+                document.getElementById("alert").style.display = "block"
+                document.getElementById("pp").style.height = "80%"
+            } else {
+                document.getElementById("alert").style.display = "none";
+            }
+        }
+
+        function showDate() {
+            var r = document.getElementById("dat").value;
+            if (d >= r) {
+                document.getElementById("alert").style.display = "block"
+                document.getElementById("done").disabled = true;
+            } else {
+                document.getElementById("alert").style.display = "none";
+                document.getElementById("done").disabled = false;
+            }
+        }
+    </script>
     <!-------------------------------------Block_account--------------------------------------------------------->
     <div id="Block_account" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -70,7 +101,9 @@ if (empty($session_id) || $ligne['status']=='2') {
             </div>
             <div class="collapse navbar-collapse color_black" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="color_black" style="text-transform: capitalize;"> <?php echo $ligne['firstname'];echo " ";echo $ligne['lastname'];?></span></a></li>
+                    <li><a href="#"><span class="color_black" style="text-transform: capitalize;"> <?php echo $ligne['firstname'];
+                                                                                                    echo " ";
+                                                                                                    echo $ligne['lastname']; ?></span></a></li>
                     <li><a href="homepage.php"><span class="color_black"> Requests</span></a></li>
                     <li><a href="compte.php?logout"><span class="color_black"> Logout</span></a></li>
                 </ul>
@@ -93,10 +126,10 @@ if (empty($session_id) || $ligne['status']=='2') {
                 <div align="center"><img class="img_user" src="images/user.png"></div>
                 <ul class="nav nav-pills nav-stacked nav_main">
                     <li class="active"><a class="btn_right_1">
-                            <svg  style="margin-bottom: -5px;" class="glyp_profile_right bi bi-grid-fill" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <svg style="margin-bottom: -5px;" class="glyp_profile_right bi bi-grid-fill" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3a1.5 1.5 0 011.5 1.5v3a1.5 1.5 0 01-1.5 1.5h-3A1.5 1.5 0 019 13.5v-3z" clip-rule="evenodd" />
                             </svg>
-                            <span > Main</span>
+                            <span> Main</span>
                         </a></li>
                     <li><a class="btn_right" href="#" onclick="add_request()">
                             <svg class="glyp_profile_right bi bi-file-earmark-plus" width="1.9em" height="1.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -128,7 +161,7 @@ if (empty($session_id) || $ligne['status']=='2') {
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a class="btn_right_1" href="#">
-                            <svg  style="margin-bottom: -5px;" class="glyp_profile_right bi bi-gear-fill" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <svg style="margin-bottom: -5px;" class="glyp_profile_right bi bi-gear-fill" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 01-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 01.872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 012.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 012.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 01.872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 01-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 01-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 100-5.86 2.929 2.929 0 000 5.858z" clip-rule="evenodd" />
                             </svg>
                             <span>Sittings</span></a></li>

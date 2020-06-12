@@ -10,9 +10,13 @@ if (isset($_POST['add'])) {
   @$is_free = $_POST['is_free'];
   @$is_eme = $_POST['is_eme'];
   $date = $_POST['date'];
-  mysqli_query($con, "INSERT INTO `request`(`destination`, `arrival`, `id_type`, `date`, `status`, `is_emergency`, `is_free`, `id_user`) 
-VALUES ('$Dest', '$arrival', '$type', '$date', '0', '$is_eme', '$is_free', '$session_id')");
-  header("LOCATION:profile.php");
+  $dateNow = date("Y-m-d");
+  if ($date >= $dateNow) {
+    mysqli_query($con, "INSERT INTO `request`(`destination`, `arrival`, `id_type`, `date`, `status`, `is_emergency`, `is_free`, `id_user`) 
+      VALUES ('$Dest', '$arrival', '$type', '$date', '0', '$is_eme', '$is_free', '$session_id')");
+    header("LOCATION:profile.php");
+  } else
+    header("LOCATION:profile.php?addWrong");
 }
 if (isset($_POST['edit'])) {
   @$Dest = $_POST['Dest'];
@@ -20,7 +24,7 @@ if (isset($_POST['edit'])) {
   @$type = $_POST['type'];
   @$is_free = $_POST['is_free'];
   @$is_eme = $_POST['is_eme'];
-  $date =$_POST['date'];
+  $date = $_POST['date'];
   $id_request = $_SESSION['id'];
   mysqli_query($con, "UPDATE `request` SET `destination`='$Dest',`arrival`='$arrival',`id_type`='$type',
   `date`='$date',`is_emergency`='$is_eme',`is_free`='$is_free',`status`='0' WHERE id_request=$id_request");
@@ -58,10 +62,12 @@ if (isset($_GET['id'])) {
         <svg class="bi bi-calendar3-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2H0z" />
           <path fill-rule="evenodd" d="M0 3h16v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm6.5 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-8 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-8 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-          </svg>
+        </svg>
       </span>
-      <input type="date" class="form-control" id="arrival" <?php echo "value='" . @$row['date'] . "'"; ?> onkeyup="testAdd()" name="date">
+      <input type="date" class="form-control" id="dat" <?php echo "value='" . @$row['date'] . "'"; ?> onchange="testAdd()" name="date">
     </div><br>
+    <div class="alert alert-danger" id="alert" style="padding: 10px;font-size:12px;display:none" role="alert">
+      Sorry, you entered a wrong date. Please choose another date.</div>
     <div class="input-group">
       <span class="input-group-addon"><svg class="bi bi-list-ul" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm-3 1a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2zm0 4a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />

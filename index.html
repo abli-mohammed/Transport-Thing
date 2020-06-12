@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
-<body id="up" style="background-color: #f7f7f7;">
+<body id="up" onscroll="btnHide()" style="background-color: #f7f7f7;">
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
@@ -120,13 +120,12 @@
           </svg>
     </div>
     <script>
-        var btnUp = document.getElementById("btn_up"),
-            s, d;
+        var btnUp = document.getElementById("btn_up");
 
         function btnHide() {
             if (window.scrollY >= 300) {
+                btnUp.style.display = "block"
                 if (!btnUp.classList.contains("btn_over")) {
-                    btnUp.style.display = "block";
                     btnUp.classList.remove("btn_exit");
                     btnUp.classList.add("btn_over");
                 }
@@ -139,18 +138,10 @@
             }
 
         }
-        window.onload = btnHide;
-        window.onscroll = btnHide;
+
         btnUp.onclick = function() {
             d = window.scrollTo(0, 0);
-            goup();
-        }
 
-        function goup() {
-            document.body.scrollY -= d / 50;
-            s = setTimeout(goup, 10);
-            if (document.body.scrollY == 0)
-                clearTimeout(s);
         }
     </script>
 </body>

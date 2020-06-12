@@ -107,17 +107,6 @@ function My_delivery() {
     };
 }
 
-function testAdd() {
-    var de = document.getElementById("dest").value;
-    var arr = document.getElementById("arrival").value;
-    document.getElementById("done").disabled = false;
-    if (de.length > 3 && arr.length > 3) {
-        document.getElementById("done").disabled = false;
-    } else {
-        document.getElementById("done").disabled = true;
-    }
-}
-
 function testCode() {
     var fn = document.getElementById("fn").value;
     var ln = document.getElementById("ln").value;

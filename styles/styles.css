@@ -206,6 +206,7 @@ html {
     background-color: #fff;
     border-radius: 10px;
     height: 30px;
+    display: none;
 }
 
 .btn_over {
