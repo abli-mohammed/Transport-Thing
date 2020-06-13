@@ -872,3 +872,75 @@ p {
     visibility: visible;
     opacity: 1;
 }
+
+.card_index {
+    padding: 0px 40px 50px 40px;
+}
+
+.card_index p {
+    font-size: 16px;
+    color: #222;
+}
+
+.card_index:hover {
+    position: relative;
+    box-shadow: #adadad 1px 1px 21px -9px;
+    bottom: 5px;
+}
+
+.slide1_over {
+    animation-duration: 1s;
+    animation-name: slide1_over;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide1_over {
+    from {
+        bottom: -40px;
+    }
+    to {
+        bottom: 20px;
+    }
+}
+
+.slide2_over {
+    animation-duration: 1.3s;
+    animation-name: slide2_over;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide2_over {
+    from {
+        bottom: -50px;
+    }
+    to {
+        bottom: 20px;
+    }
+}
+
+.slide3_over {
+    animation-duration: 1.6s;
+    animation-name: slide3_over;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide3_over {
+    from {
+        bottom: -60px;
+    }
+    to {
+        bottom: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .card_index p {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card_index p {
+        font-size: 16px;
+    }
+}
