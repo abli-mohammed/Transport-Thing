@@ -933,6 +933,21 @@ p {
     }
 }
 
+.raw_tr {
+    animation: show_title 3s steps(22);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@keyframes show_title {
+    0% {
+        width: 0ch;
+    }
+    100% {
+        width: 22ch;
+    }
+}
+
 @media (min-width: 768px) {
     .card_index p {
         font-size: 13px;
